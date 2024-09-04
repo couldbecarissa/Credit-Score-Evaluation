@@ -1,0 +1,501 @@
+gender,age,extra_info,housing_situation,own_vs_rent,years_in_business,customer_payment_method,emergency_handling,financial_literacy,inquiriesOverLast12Months,total_amount_in_debt,periodicityOfPayments,numberOfOverdueInstallments,mainChallenges,supportType
+female,59,0.4,8,own,2,other,loan more money,yes,2,374931,semi annually,8,supply chain issues,infrastructure improvements
+female,55,0.6,4,own,0,loan,dip into savings,yes,3,121588,annually,4,credit and financing,financial assistance
+male,54,0.4,4,own,16,bank payment,loan more money,no,5,279250,annually,8,credit and financing,infrastructure improvements
+female,38,0.8,3,own,18,cash,loan more money,yes,2,224469,annually,2,inventory management,business training
+male,25,0.4,6,own,12,loan,dip into savings,yes,8,323206,annually,3,supply chain issues,infrastructure improvements
+female,22,0.8,2,own,9,bank payment,loan more money,yes,3,427661,semi annually,9,other,infrastructure improvements
+female,36,0.4,7,own,17,mobile money,loan more money,no,3,211225,annually,5,supply chain issues,infrastructure improvements
+female,21,1,9,rent,13,cash,dip into savings,no,1,275450,quarterly,5,other,financial assistance
+male,42,0.8,7,own,7,cash,loan more money,no,8,104015,semi annually,1,inventory management,infrastructure improvements
+female,52,0.2,3,own,11,mobile money,dip into savings,no,1,159252,semi annually,3,inventory management,infrastructure improvements
+female,33,0.6,8,rent,11,other,dip into savings,yes,6,435122,annually,2,inventory management,infrastructure improvements
+female,24,1,5,own,12,other,loan more money,yes,5,390321,quarterly,5,supply chain issues,financial assistance
+female,58,0.4,4,own,9,cash,dip into savings,no,3,234459,semi annually,3,other,business training
+male,23,0.2,2,own,12,other,dip into savings,yes,3,365722,quarterly,7,other,financial assistance
+female,48,0.2,3,own,15,bank payment,loan more money,no,7,153123,semi annually,0,credit and financing,business training
+female,57,0.4,7,own,4,mobile money,loan more money,yes,4,370739,quarterly,5,inventory management,infrastructure improvements
+female,49,1,8,own,13,mobile money,loan more money,no,9,349247,annually,6,other,business training
+female,35,0.8,8,rent,7,other,loan more money,yes,9,135045,annually,1,supply chain issues,financial assistance
+male,31,1,1,own,14,other,loan more money,no,1,283334,quarterly,3,other,infrastructure improvements
+female,22,1,7,own,7,cash,loan more money,yes,8,431267,quarterly,9,inventory management,business training
+male,53,0.2,9,own,2,loan,loan more money,no,4,218272,quarterly,9,credit and financing,infrastructure improvements
+male,43,1,6,own,2,bank payment,loan more money,no,9,273757,semi annually,2,inventory management,business training
+female,44,0.2,9,rent,18,cash,loan more money,yes,4,62661,annually,0,other,business training
+male,32,0.8,5,own,18,mobile money,loan more money,yes,3,227523,quarterly,6,credit and financing,infrastructure improvements
+male,35,0.8,7,rent,16,mobile money,loan more money,yes,3,124991,monthly,9,credit and financing,financial assistance
+female,31,0.2,9,rent,2,other,loan more money,no,9,354282,annually,6,other,infrastructure improvements
+male,55,1,5,rent,9,loan,loan more money,yes,5,275688,monthly,0,inventory management,business training
+female,56,0.6,9,rent,13,mobile money,loan more money,no,3,491583,annually,4,credit and financing,financial assistance
+female,30,0.6,1,rent,10,mobile money,dip into savings,no,6,280236,semi annually,4,other,financial assistance
+female,52,1,1,own,0,mobile money,loan more money,yes,6,453418,monthly,4,supply chain issues,business training
+male,36,0.2,5,rent,10,mobile money,loan more money,yes,4,305218,annually,0,supply chain issues,infrastructure improvements
+male,21,0.2,4,own,0,cash,dip into savings,no,8,230917,annually,9,credit and financing,business training
+male,52,0.4,2,own,10,mobile money,loan more money,yes,4,97875,quarterly,5,other,financial assistance
+female,40,0.2,3,rent,7,bank payment,dip into savings,no,7,189967,monthly,8,other,infrastructure improvements
+female,37,0.6,4,own,15,mobile money,loan more money,no,1,340063,monthly,4,inventory management,business training
+female,41,0.4,8,own,7,other,loan more money,no,5,279452,annually,3,credit and financing,business training
+female,56,0.8,9,own,6,bank payment,loan more money,no,7,495620,semi annually,4,other,financial assistance
+female,24,0.4,4,rent,1,bank payment,loan more money,no,4,487784,monthly,9,credit and financing,business training
+male,59,0.8,6,own,18,mobile money,dip into savings,yes,7,64898,semi annually,8,credit and financing,business training
+male,47,0.6,5,rent,5,bank payment,dip into savings,no,0,476250,quarterly,3,other,financial assistance
+male,32,0.8,7,rent,0,other,dip into savings,yes,5,61648,semi annually,7,other,financial assistance
+female,26,1,5,own,4,cash,loan more money,no,8,124255,quarterly,2,other,financial assistance
+male,49,0.4,7,rent,1,mobile money,dip into savings,no,0,296442,monthly,3,inventory management,business training
+female,42,0.4,7,rent,1,bank payment,loan more money,yes,9,460809,semi annually,3,inventory management,business training
+female,55,1,4,rent,4,bank payment,loan more money,no,7,399938,quarterly,8,supply chain issues,infrastructure improvements
+female,35,0.8,7,rent,12,mobile money,loan more money,no,5,271502,semi annually,0,credit and financing,infrastructure improvements
+female,59,0.6,2,rent,7,loan,dip into savings,no,5,299399,semi annually,7,other,financial assistance
+female,29,0.6,4,own,17,cash,loan more money,yes,1,355180,monthly,3,supply chain issues,infrastructure improvements
+female,47,1,9,rent,9,cash,loan more money,yes,0,72479,quarterly,3,credit and financing,business training
+female,35,0.8,7,own,2,mobile money,dip into savings,yes,0,349810,quarterly,9,credit and financing,financial assistance
+male,56,0.2,4,own,17,mobile money,dip into savings,yes,2,335869,semi annually,4,inventory management,infrastructure improvements
+male,39,0.4,3,own,6,cash,dip into savings,yes,0,134965,monthly,9,supply chain issues,financial assistance
+male,23,0.2,1,own,6,bank payment,dip into savings,yes,2,375004,monthly,5,credit and financing,financial assistance
+male,29,0.4,6,rent,1,mobile money,dip into savings,no,8,275915,quarterly,7,credit and financing,financial assistance
+male,59,0.6,4,own,3,other,loan more money,yes,1,380202,monthly,6,inventory management,business training
+female,28,0.6,1,rent,11,cash,loan more money,yes,7,153555,semi annually,4,other,financial assistance
+female,40,0.4,6,own,13,cash,dip into savings,no,5,82466,annually,7,supply chain issues,financial assistance
+female,30,0.6,8,own,15,cash,dip into savings,no,3,493155,monthly,1,other,business training
+male,46,0.8,4,own,8,mobile money,dip into savings,no,0,263734,semi annually,9,credit and financing,business training
+female,36,0.8,5,own,18,cash,loan more money,yes,1,396815,quarterly,2,inventory management,infrastructure improvements
+female,56,0.2,4,rent,8,bank payment,loan more money,no,9,496508,annually,5,credit and financing,financial assistance
+male,22,0.8,9,rent,15,cash,loan more money,yes,8,485696,annually,1,supply chain issues,infrastructure improvements
+male,35,0.4,6,rent,0,cash,loan more money,no,3,326329,monthly,0,other,financial assistance
+male,25,0.4,3,rent,11,other,dip into savings,no,0,176424,quarterly,0,other,infrastructure improvements
+male,37,0.4,3,own,11,cash,loan more money,no,9,240318,semi annually,1,inventory management,business training
+female,33,0.6,6,own,12,bank payment,loan more money,yes,4,170504,monthly,7,credit and financing,financial assistance
+male,21,0.2,8,own,18,mobile money,dip into savings,no,8,326387,annually,0,inventory management,business training
+female,39,0.4,3,own,15,mobile money,dip into savings,yes,3,72993,annually,5,credit and financing,financial assistance
+male,55,1,1,rent,0,other,dip into savings,no,8,457114,quarterly,6,credit and financing,infrastructure improvements
+female,43,1,2,rent,11,bank payment,dip into savings,yes,0,401226,quarterly,0,inventory management,infrastructure improvements
+male,32,0.2,4,own,5,cash,dip into savings,no,0,473989,quarterly,7,credit and financing,business training
+female,44,1,9,own,1,cash,loan more money,no,1,463906,annually,2,supply chain issues,financial assistance
+female,44,1,5,own,19,loan,dip into savings,no,2,131677,quarterly,0,inventory management,financial assistance
+male,34,0.6,5,own,16,loan,loan more money,yes,5,477431,annually,5,credit and financing,business training
+female,38,0.6,3,rent,7,other,dip into savings,no,9,106559,semi annually,3,credit and financing,business training
+male,33,0.4,5,own,9,loan,dip into savings,yes,1,274064,monthly,4,credit and financing,financial assistance
+male,52,0.8,2,rent,12,mobile money,loan more money,yes,3,180476,semi annually,7,credit and financing,business training
+female,27,0.6,8,rent,11,mobile money,dip into savings,no,4,284674,annually,8,inventory management,infrastructure improvements
+female,44,0.2,1,rent,16,bank payment,loan more money,no,6,285939,annually,1,supply chain issues,business training
+male,51,0.2,3,rent,11,bank payment,loan more money,no,6,417076,annually,7,other,infrastructure improvements
+male,54,0.2,8,rent,14,cash,loan more money,no,6,192366,semi annually,1,credit and financing,financial assistance
+female,30,0.8,2,own,1,cash,dip into savings,yes,2,296494,quarterly,2,credit and financing,financial assistance
+female,31,1,2,rent,17,bank payment,loan more money,yes,7,364382,quarterly,2,other,financial assistance
+female,54,0.8,6,rent,0,bank payment,dip into savings,no,5,462029,annually,0,supply chain issues,infrastructure improvements
+male,42,1,3,rent,13,other,loan more money,yes,5,96708,monthly,2,inventory management,business training
+male,33,0.2,4,own,8,bank payment,loan more money,yes,9,265900,quarterly,2,inventory management,financial assistance
+female,58,1,1,own,6,cash,loan more money,no,1,480013,annually,1,inventory management,infrastructure improvements
+male,58,0.4,1,rent,12,bank payment,dip into savings,yes,8,126234,quarterly,0,credit and financing,infrastructure improvements
+female,35,0.8,2,own,1,bank payment,loan more money,no,1,491165,quarterly,9,credit and financing,financial assistance
+male,21,1,8,own,15,bank payment,loan more money,yes,3,474577,quarterly,2,inventory management,financial assistance
+female,43,0.6,1,own,18,mobile money,dip into savings,yes,8,452432,semi annually,3,other,business training
+female,26,1,9,own,19,loan,loan more money,yes,2,225828,monthly,5,other,financial assistance
+female,34,0.8,9,own,3,mobile money,dip into savings,yes,0,74916,semi annually,7,credit and financing,infrastructure improvements
+female,42,0.2,2,own,15,mobile money,loan more money,no,0,288450,monthly,4,supply chain issues,infrastructure improvements
+male,46,0.6,6,rent,0,bank payment,loan more money,no,2,258845,monthly,8,supply chain issues,financial assistance
+male,21,0.4,5,own,16,cash,loan more money,yes,1,107027,semi annually,8,credit and financing,financial assistance
+male,35,0.4,1,own,16,loan,dip into savings,no,5,81396,annually,5,inventory management,financial assistance
+male,59,0.2,9,own,3,other,dip into savings,no,5,384925,monthly,3,other,business training
+male,36,0.2,2,own,9,cash,loan more money,no,9,199248,semi annually,2,credit and financing,financial assistance
+female,51,0.4,7,rent,17,bank payment,dip into savings,yes,2,473270,semi annually,6,inventory management,business training
+male,33,0.4,4,rent,1,bank payment,dip into savings,yes,3,432249,annually,5,other,business training
+male,44,0.6,9,rent,3,cash,dip into savings,no,6,246528,quarterly,5,inventory management,financial assistance
+female,39,0.8,8,own,9,cash,dip into savings,yes,4,377411,quarterly,5,inventory management,infrastructure improvements
+female,36,0.6,8,rent,9,other,loan more money,yes,9,385523,annually,0,other,business training
+female,42,0.8,2,own,9,mobile money,loan more money,yes,1,135308,annually,9,other,business training
+female,59,0.2,1,rent,18,loan,loan more money,yes,7,260657,quarterly,0,inventory management,financial assistance
+female,57,0.8,9,rent,16,cash,dip into savings,yes,0,318341,semi annually,8,other,infrastructure improvements
+male,22,0.2,5,own,14,mobile money,loan more money,no,1,382312,quarterly,1,credit and financing,business training
+male,21,0.4,5,rent,8,bank payment,loan more money,no,6,103432,semi annually,8,credit and financing,business training
+male,34,1,2,rent,16,loan,dip into savings,no,0,409869,monthly,6,other,business training
+male,56,0.4,4,own,7,mobile money,loan more money,no,4,206430,monthly,1,other,infrastructure improvements
+female,37,0.8,4,own,2,other,dip into savings,no,7,385705,monthly,6,credit and financing,business training
+male,49,1,9,rent,7,other,dip into savings,no,7,494863,monthly,0,supply chain issues,financial assistance
+female,45,0.4,1,rent,17,cash,loan more money,no,7,213412,monthly,6,other,business training
+male,32,1,1,rent,9,cash,dip into savings,no,8,103461,annually,3,other,financial assistance
+female,26,0.4,9,own,5,mobile money,loan more money,no,7,132945,annually,7,inventory management,business training
+female,23,0.2,6,rent,14,cash,dip into savings,no,4,441481,annually,2,supply chain issues,infrastructure improvements
+male,22,0.6,9,own,8,loan,dip into savings,no,6,204598,semi annually,2,inventory management,infrastructure improvements
+female,38,0.6,3,rent,4,loan,dip into savings,yes,2,339870,quarterly,9,inventory management,business training
+female,26,0.4,4,own,11,mobile money,loan more money,yes,3,212936,monthly,4,supply chain issues,financial assistance
+male,45,0.6,7,own,13,cash,dip into savings,no,7,91778,quarterly,0,other,infrastructure improvements
+female,27,0.4,9,rent,14,mobile money,dip into savings,no,6,291515,semi annually,0,other,infrastructure improvements
+male,42,0.2,8,rent,8,mobile money,dip into savings,no,7,322437,semi annually,5,credit and financing,infrastructure improvements
+female,50,0.6,4,rent,15,other,dip into savings,yes,6,60733,annually,7,other,financial assistance
+male,41,0.4,7,rent,8,cash,loan more money,no,1,315039,quarterly,9,inventory management,business training
+male,43,0.4,6,own,2,bank payment,loan more money,yes,3,354981,quarterly,8,credit and financing,business training
+male,49,0.2,9,own,14,mobile money,loan more money,no,5,345751,semi annually,8,inventory management,business training
+female,23,0.6,5,rent,8,cash,dip into savings,no,4,340916,semi annually,0,inventory management,business training
+male,21,1,4,rent,19,cash,loan more money,no,8,60125,monthly,8,credit and financing,business training
+male,35,0.8,8,rent,11,cash,loan more money,yes,8,162517,annually,6,credit and financing,business training
+female,37,0.4,3,own,9,other,dip into savings,yes,4,256597,annually,6,supply chain issues,business training
+female,31,0.4,2,own,7,mobile money,dip into savings,no,5,200186,monthly,8,other,business training
+female,55,0.8,9,rent,3,other,loan more money,yes,2,258095,annually,5,other,financial assistance
+male,51,0.4,6,rent,9,loan,loan more money,no,9,214384,quarterly,3,supply chain issues,infrastructure improvements
+male,52,0.8,3,own,19,other,dip into savings,yes,3,432291,annually,2,inventory management,financial assistance
+male,25,0.2,5,own,1,bank payment,dip into savings,no,4,344679,semi annually,3,supply chain issues,business training
+female,50,0.2,2,rent,2,bank payment,loan more money,no,0,480012,annually,0,supply chain issues,infrastructure improvements
+female,24,0.4,7,own,6,loan,loan more money,no,7,85108,quarterly,3,other,business training
+female,21,0.2,3,rent,5,cash,loan more money,no,6,143052,monthly,0,other,business training
+male,22,0.2,2,own,10,mobile money,dip into savings,no,8,91334,annually,5,supply chain issues,business training
+male,30,0.6,1,own,17,bank payment,dip into savings,yes,8,342229,annually,6,other,financial assistance
+female,44,0.4,9,rent,13,mobile money,dip into savings,yes,7,174339,monthly,2,credit and financing,business training
+female,59,1,4,own,11,other,loan more money,no,1,437705,annually,8,supply chain issues,infrastructure improvements
+male,38,0.2,2,rent,19,bank payment,loan more money,no,3,375353,semi annually,8,inventory management,infrastructure improvements
+male,24,0.6,3,own,14,mobile money,loan more money,yes,4,241376,quarterly,8,other,financial assistance
+female,23,0.4,7,own,7,bank payment,dip into savings,no,7,113191,annually,6,supply chain issues,financial assistance
+male,21,1,3,own,7,other,dip into savings,yes,3,491058,annually,7,inventory management,business training
+female,30,0.8,1,rent,9,other,loan more money,yes,0,57170,quarterly,3,credit and financing,business training
+male,59,0.6,9,own,12,cash,dip into savings,yes,0,344415,monthly,4,other,business training
+male,51,1,4,own,2,cash,loan more money,no,9,97722,annually,6,other,infrastructure improvements
+female,39,0.8,8,own,2,loan,loan more money,no,7,184091,monthly,5,credit and financing,financial assistance
+female,52,1,4,rent,17,cash,loan more money,yes,4,443167,annually,5,credit and financing,business training
+female,51,0.6,9,rent,8,mobile money,loan more money,yes,6,186393,quarterly,5,inventory management,business training
+male,45,0.8,2,own,15,loan,loan more money,yes,0,357653,annually,5,credit and financing,business training
+male,29,0.8,4,rent,12,cash,dip into savings,yes,5,227404,semi annually,1,inventory management,business training
+female,30,0.4,2,rent,4,loan,dip into savings,yes,3,320742,monthly,8,credit and financing,infrastructure improvements
+female,51,0.2,2,own,3,bank payment,loan more money,no,8,309285,monthly,3,credit and financing,infrastructure improvements
+male,29,0.2,3,own,17,mobile money,dip into savings,no,7,149437,semi annually,0,other,infrastructure improvements
+female,28,0.2,9,own,13,mobile money,loan more money,no,0,211164,semi annually,8,credit and financing,infrastructure improvements
+female,39,0.8,3,rent,3,loan,dip into savings,no,2,59094,quarterly,4,inventory management,infrastructure improvements
+female,50,0.8,9,rent,6,loan,loan more money,no,8,54830,monthly,5,supply chain issues,financial assistance
+male,47,0.2,6,own,1,mobile money,dip into savings,no,0,242076,annually,1,credit and financing,financial assistance
+female,41,1,3,own,8,cash,loan more money,no,6,312230,annually,0,other,infrastructure improvements
+female,29,0.2,1,rent,4,cash,dip into savings,no,6,125198,annually,6,credit and financing,business training
+female,58,0.8,1,own,18,mobile money,dip into savings,yes,6,404538,semi annually,5,credit and financing,infrastructure improvements
+male,52,0.6,2,own,4,bank payment,dip into savings,yes,5,226867,monthly,4,inventory management,financial assistance
+male,38,0.8,4,rent,5,loan,loan more money,no,3,132342,quarterly,0,other,business training
+male,39,1,1,rent,0,other,dip into savings,yes,1,205410,annually,3,supply chain issues,infrastructure improvements
+female,41,0.8,8,rent,3,mobile money,dip into savings,no,6,478098,semi annually,7,credit and financing,business training
+male,45,0.6,6,rent,4,loan,dip into savings,yes,9,476795,semi annually,3,inventory management,financial assistance
+female,38,1,4,own,12,cash,loan more money,yes,3,347486,semi annually,7,other,business training
+male,29,0.4,6,own,1,bank payment,dip into savings,no,1,236051,monthly,4,supply chain issues,infrastructure improvements
+female,40,1,3,own,6,cash,dip into savings,no,3,236547,semi annually,0,supply chain issues,infrastructure improvements
+female,42,0.2,4,rent,11,loan,dip into savings,no,0,196300,quarterly,5,supply chain issues,infrastructure improvements
+female,52,0.6,8,own,8,other,loan more money,yes,1,253409,quarterly,1,supply chain issues,financial assistance
+male,43,0.4,4,rent,8,mobile money,loan more money,no,3,333543,quarterly,4,inventory management,financial assistance
+male,28,0.6,5,own,0,mobile money,dip into savings,no,3,482986,annually,7,inventory management,financial assistance
+female,24,0.8,9,own,2,bank payment,dip into savings,yes,0,172527,quarterly,5,inventory management,business training
+female,20,0.8,3,own,9,loan,loan more money,no,2,51921,annually,8,inventory management,financial assistance
+male,39,1,3,own,7,cash,dip into savings,yes,4,490291,monthly,7,credit and financing,business training
+female,48,0.8,3,own,17,bank payment,loan more money,yes,0,392110,monthly,8,credit and financing,financial assistance
+female,24,0.6,6,own,3,bank payment,dip into savings,no,2,348756,monthly,3,other,financial assistance
+male,23,0.2,9,own,1,bank payment,loan more money,no,9,195147,monthly,5,supply chain issues,business training
+male,23,0.4,2,own,2,other,dip into savings,no,2,488394,annually,3,inventory management,infrastructure improvements
+male,46,0.4,7,rent,1,cash,dip into savings,yes,3,163336,annually,3,supply chain issues,infrastructure improvements
+male,21,0.2,8,rent,10,cash,loan more money,yes,0,315953,monthly,5,credit and financing,financial assistance
+male,37,0.2,2,own,2,loan,loan more money,no,0,402222,semi annually,7,credit and financing,infrastructure improvements
+female,28,0.2,6,own,9,bank payment,loan more money,no,5,54629,semi annually,9,other,infrastructure improvements
+male,37,1,7,own,5,other,dip into savings,yes,2,110492,monthly,9,credit and financing,business training
+male,22,0.4,7,rent,9,other,loan more money,yes,8,445417,monthly,3,supply chain issues,business training
+female,23,0.2,4,own,5,cash,loan more money,no,8,339665,annually,3,credit and financing,infrastructure improvements
+female,27,0.6,7,own,18,loan,loan more money,yes,6,351234,annually,7,inventory management,infrastructure improvements
+male,59,0.4,4,own,8,cash,dip into savings,yes,2,483125,annually,3,other,business training
+female,45,0.4,8,own,12,cash,dip into savings,yes,3,91417,semi annually,0,supply chain issues,financial assistance
+female,45,0.8,9,own,8,mobile money,dip into savings,yes,9,243850,semi annually,0,supply chain issues,infrastructure improvements
+female,50,1,7,own,11,mobile money,loan more money,yes,2,184622,quarterly,2,other,financial assistance
+female,21,0.4,1,own,6,cash,dip into savings,no,3,286940,semi annually,7,other,infrastructure improvements
+male,29,1,9,rent,19,bank payment,dip into savings,yes,9,118312,quarterly,8,credit and financing,financial assistance
+male,52,0.2,1,own,1,other,loan more money,no,4,263097,monthly,4,supply chain issues,financial assistance
+male,30,0.4,9,own,2,mobile money,dip into savings,yes,7,68146,annually,5,credit and financing,financial assistance
+female,25,0.2,5,rent,2,cash,dip into savings,no,4,391153,quarterly,4,supply chain issues,infrastructure improvements
+female,22,0.6,4,own,11,mobile money,loan more money,no,3,499331,quarterly,5,credit and financing,infrastructure improvements
+female,23,0.6,6,rent,4,other,dip into savings,no,8,328349,monthly,7,credit and financing,business training
+female,59,0.6,4,rent,4,loan,dip into savings,yes,3,411053,monthly,7,other,financial assistance
+female,44,0.4,3,own,2,bank payment,loan more money,no,3,336350,annually,7,supply chain issues,infrastructure improvements
+female,23,0.8,6,rent,19,bank payment,dip into savings,yes,4,159203,quarterly,2,other,financial assistance
+female,55,0.8,5,own,6,bank payment,loan more money,no,7,119500,annually,6,supply chain issues,financial assistance
+female,29,0.8,7,own,3,other,loan more money,yes,5,154450,annually,8,other,infrastructure improvements
+male,41,0.6,4,rent,17,cash,loan more money,no,9,181036,annually,7,supply chain issues,financial assistance
+male,45,0.2,8,own,4,bank payment,loan more money,yes,4,427250,quarterly,0,other,financial assistance
+male,54,0.8,8,own,10,bank payment,dip into savings,yes,6,241803,monthly,5,supply chain issues,infrastructure improvements
+male,26,0.8,3,rent,15,other,loan more money,no,9,426346,annually,6,other,infrastructure improvements
+female,26,0.8,6,own,0,other,dip into savings,no,1,399524,monthly,8,other,financial assistance
+male,29,0.8,6,rent,18,cash,loan more money,no,1,491515,monthly,7,other,financial assistance
+male,55,1,5,own,18,mobile money,dip into savings,yes,4,194281,monthly,9,credit and financing,financial assistance
+male,42,0.4,2,own,18,bank payment,loan more money,yes,6,291877,annually,8,inventory management,financial assistance
+female,37,0.8,1,own,16,other,dip into savings,no,9,270009,annually,7,credit and financing,business training
+male,34,0.8,2,rent,4,other,loan more money,no,3,369933,semi annually,9,other,financial assistance
+male,31,0.4,8,rent,10,loan,loan more money,no,3,425067,monthly,5,supply chain issues,infrastructure improvements
+female,46,0.4,2,rent,1,other,dip into savings,yes,1,412217,monthly,4,other,infrastructure improvements
+male,32,1,4,rent,11,cash,loan more money,no,6,167543,annually,9,supply chain issues,infrastructure improvements
+male,30,0.6,7,own,5,mobile money,loan more money,no,8,129593,annually,5,supply chain issues,business training
+male,41,0.6,6,own,1,mobile money,loan more money,no,6,448433,quarterly,2,credit and financing,infrastructure improvements
+male,43,0.6,2,rent,7,other,dip into savings,no,3,352272,monthly,2,supply chain issues,infrastructure improvements
+female,21,0.2,3,rent,17,bank payment,loan more money,no,7,114730,semi annually,9,inventory management,financial assistance
+female,21,0.8,8,own,17,bank payment,dip into savings,yes,8,415230,semi annually,8,supply chain issues,business training
+male,20,0.8,3,rent,1,other,loan more money,yes,8,177782,quarterly,2,other,financial assistance
+female,59,1,5,rent,7,cash,loan more money,yes,6,163471,monthly,7,supply chain issues,infrastructure improvements
+male,41,0.6,9,rent,12,mobile money,dip into savings,yes,3,323944,annually,6,supply chain issues,infrastructure improvements
+female,29,1,4,own,5,bank payment,dip into savings,yes,6,144747,monthly,0,credit and financing,business training
+male,27,0.2,9,rent,15,loan,loan more money,yes,6,162708,quarterly,9,credit and financing,financial assistance
+male,31,0.8,5,own,19,loan,dip into savings,no,5,316665,quarterly,1,credit and financing,business training
+male,26,0.2,4,rent,11,cash,loan more money,no,3,96904,annually,1,credit and financing,financial assistance
+male,46,0.6,5,rent,19,bank payment,loan more money,yes,4,329217,semi annually,7,supply chain issues,infrastructure improvements
+male,49,1,9,own,5,bank payment,dip into savings,no,7,153330,annually,7,inventory management,infrastructure improvements
+male,32,1,7,rent,17,other,dip into savings,yes,3,400938,quarterly,6,inventory management,financial assistance
+male,30,0.4,2,rent,9,bank payment,dip into savings,yes,6,286165,semi annually,8,supply chain issues,infrastructure improvements
+female,45,1,3,rent,4,loan,loan more money,yes,4,337961,annually,1,supply chain issues,financial assistance
+male,32,1,8,rent,1,other,dip into savings,yes,2,320081,quarterly,6,supply chain issues,business training
+male,28,1,2,rent,9,bank payment,loan more money,no,2,83348,monthly,3,credit and financing,business training
+male,32,1,1,rent,13,cash,loan more money,no,7,295475,quarterly,9,supply chain issues,financial assistance
+female,49,0.4,5,own,11,other,loan more money,no,9,290395,quarterly,9,credit and financing,financial assistance
+female,50,0.8,7,rent,5,mobile money,dip into savings,yes,9,343351,semi annually,4,credit and financing,financial assistance
+male,28,0.4,8,own,18,other,loan more money,yes,9,201839,semi annually,0,credit and financing,infrastructure improvements
+male,41,0.8,3,own,16,mobile money,loan more money,yes,8,217744,quarterly,3,supply chain issues,financial assistance
+male,56,0.2,4,own,4,other,dip into savings,no,5,421121,monthly,5,credit and financing,infrastructure improvements
+male,53,0.8,2,rent,16,other,loan more money,no,4,410085,semi annually,5,other,infrastructure improvements
+female,29,1,9,own,13,cash,loan more money,yes,2,499096,annually,3,credit and financing,financial assistance
+female,36,0.4,3,own,18,mobile money,dip into savings,yes,8,390764,quarterly,9,credit and financing,business training
+male,33,0.2,3,rent,16,bank payment,dip into savings,no,8,86621,annually,0,inventory management,infrastructure improvements
+female,56,1,8,own,17,mobile money,loan more money,yes,0,480698,annually,9,supply chain issues,business training
+female,23,0.2,7,own,7,cash,dip into savings,yes,4,358975,semi annually,8,inventory management,financial assistance
+male,32,0.6,7,rent,8,cash,dip into savings,yes,3,437046,quarterly,3,supply chain issues,business training
+female,54,0.6,3,own,1,cash,loan more money,no,9,203999,monthly,7,credit and financing,business training
+female,55,0.6,2,own,0,loan,loan more money,yes,2,472773,annually,0,inventory management,financial assistance
+male,45,0.6,4,own,18,other,dip into savings,no,5,72581,semi annually,9,credit and financing,business training
+male,51,0.4,7,own,9,loan,loan more money,yes,2,219290,annually,4,supply chain issues,infrastructure improvements
+female,24,0.4,5,rent,9,cash,loan more money,no,5,73121,annually,4,credit and financing,financial assistance
+male,24,1,9,rent,17,cash,dip into savings,no,1,382596,quarterly,9,inventory management,business training
+female,26,0.8,5,own,12,bank payment,dip into savings,no,4,372135,quarterly,6,supply chain issues,financial assistance
+male,54,0.2,9,own,16,mobile money,loan more money,yes,7,205726,monthly,5,inventory management,financial assistance
+male,48,0.2,6,rent,16,cash,loan more money,yes,8,232790,annually,4,other,business training
+male,52,0.4,6,own,19,cash,loan more money,no,7,484280,semi annually,3,other,financial assistance
+male,23,0.8,2,own,12,other,dip into savings,no,7,328822,annually,4,other,financial assistance
+male,53,1,3,own,4,loan,loan more money,yes,0,197101,monthly,6,other,business training
+male,38,0.8,6,own,17,loan,dip into savings,no,4,328140,semi annually,2,other,financial assistance
+male,55,0.2,4,rent,3,bank payment,loan more money,no,2,494701,quarterly,2,other,infrastructure improvements
+female,55,0.6,3,own,13,cash,loan more money,no,9,491010,semi annually,3,credit and financing,financial assistance
+female,24,0.4,5,own,7,other,loan more money,no,6,283931,annually,8,inventory management,financial assistance
+male,51,0.4,9,rent,12,other,dip into savings,no,3,476358,quarterly,0,inventory management,financial assistance
+male,32,0.2,9,rent,7,other,dip into savings,yes,3,270666,semi annually,4,supply chain issues,business training
+male,29,0.4,4,rent,16,bank payment,loan more money,yes,8,57340,annually,4,other,infrastructure improvements
+female,51,1,5,own,6,loan,dip into savings,yes,2,486368,semi annually,5,inventory management,infrastructure improvements
+male,51,0.2,5,rent,19,cash,dip into savings,no,5,330292,semi annually,3,supply chain issues,infrastructure improvements
+male,26,1,1,rent,17,other,dip into savings,no,5,149347,annually,8,other,infrastructure improvements
+female,31,1,8,rent,12,cash,loan more money,yes,4,264447,quarterly,8,other,business training
+male,22,1,3,own,0,cash,loan more money,no,7,315415,annually,7,other,financial assistance
+female,48,1,2,own,4,cash,loan more money,no,8,321758,monthly,2,supply chain issues,business training
+male,21,0.6,3,own,15,other,loan more money,no,1,167843,quarterly,4,other,business training
+male,33,0.2,6,rent,7,loan,dip into savings,yes,5,91284,annually,7,inventory management,financial assistance
+female,20,0.2,6,rent,2,mobile money,dip into savings,yes,8,314871,monthly,9,credit and financing,financial assistance
+male,34,0.2,4,own,18,cash,loan more money,no,8,329282,semi annually,6,supply chain issues,financial assistance
+male,53,0.4,7,own,18,loan,dip into savings,no,8,254893,semi annually,1,supply chain issues,infrastructure improvements
+female,46,0.2,9,rent,17,bank payment,dip into savings,no,8,476739,quarterly,0,supply chain issues,infrastructure improvements
+male,36,0.8,4,rent,1,mobile money,loan more money,yes,7,85445,semi annually,7,inventory management,business training
+female,57,0.2,8,own,12,other,loan more money,yes,8,334789,semi annually,3,inventory management,business training
+female,27,0.4,1,own,14,mobile money,dip into savings,yes,0,235675,monthly,0,credit and financing,infrastructure improvements
+male,41,0.2,4,own,14,loan,loan more money,yes,2,428867,quarterly,8,other,infrastructure improvements
+female,39,0.8,3,own,0,other,dip into savings,no,1,368037,monthly,9,other,infrastructure improvements
+female,46,0.4,5,rent,13,bank payment,dip into savings,no,5,200207,semi annually,2,supply chain issues,infrastructure improvements
+female,20,0.6,4,rent,18,bank payment,dip into savings,no,5,212700,semi annually,7,inventory management,infrastructure improvements
+female,38,0.4,5,rent,18,bank payment,loan more money,no,7,451682,annually,6,other,infrastructure improvements
+male,39,1,5,own,7,loan,dip into savings,no,1,381983,semi annually,6,supply chain issues,infrastructure improvements
+male,33,0.2,2,own,11,loan,dip into savings,yes,6,287563,annually,7,inventory management,infrastructure improvements
+male,30,0.8,6,own,5,mobile money,loan more money,no,7,275844,quarterly,5,credit and financing,business training
+male,20,0.2,3,rent,12,other,loan more money,yes,9,173682,monthly,1,supply chain issues,infrastructure improvements
+male,37,0.2,3,rent,11,bank payment,dip into savings,yes,5,209232,monthly,4,other,business training
+male,27,0.6,8,own,14,mobile money,dip into savings,no,4,137236,semi annually,1,supply chain issues,financial assistance
+female,47,0.2,2,rent,3,mobile money,loan more money,no,4,356284,semi annually,6,supply chain issues,business training
+male,52,0.4,6,rent,4,loan,dip into savings,yes,8,239754,semi annually,8,supply chain issues,financial assistance
+male,59,0.4,1,own,16,loan,loan more money,yes,0,140483,semi annually,1,credit and financing,business training
+male,22,0.2,5,rent,12,other,dip into savings,yes,1,343467,quarterly,7,credit and financing,business training
+male,41,0.2,9,rent,17,mobile money,dip into savings,yes,4,372386,annually,6,credit and financing,financial assistance
+female,48,1,7,rent,15,other,dip into savings,yes,5,344666,quarterly,0,other,business training
+female,49,0.2,4,own,1,other,dip into savings,yes,0,320079,annually,2,other,business training
+male,28,0.2,8,own,3,bank payment,dip into savings,no,2,336125,monthly,5,other,business training
+female,26,1,8,rent,19,loan,dip into savings,no,5,196663,quarterly,9,inventory management,infrastructure improvements
+female,46,0.4,4,own,12,loan,loan more money,no,8,377071,monthly,2,inventory management,infrastructure improvements
+female,27,0.8,4,rent,5,loan,loan more money,no,5,65623,annually,6,credit and financing,financial assistance
+female,45,1,8,own,0,loan,loan more money,yes,9,133096,annually,3,inventory management,business training
+female,48,0.2,3,rent,10,cash,dip into savings,no,0,143300,annually,8,credit and financing,business training
+female,21,0.4,5,rent,14,other,dip into savings,yes,2,338536,semi annually,0,credit and financing,business training
+male,58,0.8,2,own,14,cash,dip into savings,yes,1,159886,semi annually,9,other,business training
+female,45,0.6,6,own,15,loan,dip into savings,yes,7,289354,monthly,8,credit and financing,financial assistance
+female,28,0.8,7,own,6,mobile money,loan more money,yes,4,432683,monthly,5,supply chain issues,business training
+female,33,1,4,own,10,loan,dip into savings,no,6,166275,monthly,4,supply chain issues,financial assistance
+female,40,0.8,9,own,12,other,loan more money,yes,3,498372,quarterly,8,supply chain issues,infrastructure improvements
+male,47,0.6,7,own,12,cash,loan more money,no,8,425534,quarterly,9,other,business training
+male,24,0.4,5,own,18,bank payment,loan more money,yes,4,186303,quarterly,6,other,infrastructure improvements
+female,35,0.8,2,own,4,bank payment,loan more money,no,6,191601,monthly,6,inventory management,financial assistance
+male,26,0.8,8,own,19,other,dip into savings,yes,8,386417,annually,9,inventory management,financial assistance
+male,28,0.8,2,rent,15,cash,dip into savings,no,3,388236,quarterly,8,supply chain issues,infrastructure improvements
+male,44,0.4,6,rent,4,cash,loan more money,yes,1,382693,annually,7,inventory management,infrastructure improvements
+female,43,0.8,8,rent,13,loan,dip into savings,no,7,302320,annually,8,inventory management,business training
+female,45,1,6,own,6,other,loan more money,yes,9,271037,monthly,3,inventory management,financial assistance
+male,22,0.8,1,rent,2,mobile money,dip into savings,no,1,202254,annually,5,credit and financing,financial assistance
+female,55,0.8,7,own,16,mobile money,loan more money,no,7,235161,monthly,6,credit and financing,infrastructure improvements
+male,33,0.6,3,own,7,other,loan more money,no,3,430206,monthly,6,inventory management,financial assistance
+male,52,1,2,own,7,cash,loan more money,no,3,379655,annually,9,inventory management,infrastructure improvements
+male,21,0.2,2,own,10,other,dip into savings,no,5,300171,quarterly,9,other,infrastructure improvements
+male,24,0.4,3,rent,3,loan,dip into savings,no,3,423361,annually,9,supply chain issues,financial assistance
+male,21,0.8,4,own,10,loan,dip into savings,no,1,473957,monthly,2,other,financial assistance
+male,33,0.2,4,own,11,loan,loan more money,no,0,462399,annually,5,supply chain issues,business training
+female,20,1,8,rent,19,cash,dip into savings,yes,1,219285,semi annually,2,inventory management,financial assistance
+male,20,0.6,3,rent,10,bank payment,loan more money,no,6,284284,annually,0,supply chain issues,financial assistance
+male,30,0.8,7,own,10,other,loan more money,no,1,386227,semi annually,8,credit and financing,business training
+male,45,1,6,own,9,mobile money,loan more money,yes,1,114758,quarterly,4,supply chain issues,business training
+male,59,0.6,4,rent,4,bank payment,loan more money,yes,6,385158,monthly,1,inventory management,infrastructure improvements
+male,38,0.8,3,rent,16,bank payment,dip into savings,yes,7,99704,monthly,0,credit and financing,infrastructure improvements
+female,22,0.2,2,own,18,loan,loan more money,no,5,218384,annually,0,other,business training
+female,39,0.4,3,rent,16,loan,dip into savings,yes,9,150803,quarterly,3,supply chain issues,infrastructure improvements
+female,53,0.4,9,rent,12,loan,dip into savings,yes,4,468018,monthly,2,credit and financing,financial assistance
+male,57,1,7,own,3,mobile money,loan more money,yes,8,110882,quarterly,5,inventory management,financial assistance
+female,31,0.6,1,own,8,cash,dip into savings,yes,3,312688,quarterly,7,other,business training
+female,28,0.4,8,rent,13,bank payment,loan more money,no,9,245761,semi annually,2,supply chain issues,business training
+male,32,0.2,4,rent,6,other,dip into savings,no,2,233112,quarterly,8,other,business training
+male,22,0.6,6,rent,15,other,loan more money,yes,8,197113,semi annually,4,other,financial assistance
+male,26,0.8,3,rent,12,other,loan more money,yes,7,425415,semi annually,5,other,business training
+male,58,1,1,own,6,cash,dip into savings,no,2,436043,monthly,2,supply chain issues,financial assistance
+female,28,0.8,5,rent,12,cash,dip into savings,yes,1,103664,quarterly,6,other,financial assistance
+female,39,1,6,own,2,mobile money,loan more money,yes,2,369904,semi annually,3,other,infrastructure improvements
+male,45,1,5,own,9,cash,dip into savings,no,8,401053,monthly,3,inventory management,business training
+female,53,0.2,4,rent,12,bank payment,loan more money,yes,1,66349,annually,0,credit and financing,business training
+female,56,0.4,3,rent,14,bank payment,loan more money,yes,9,430870,monthly,3,inventory management,financial assistance
+male,28,1,1,own,18,loan,loan more money,yes,7,243368,monthly,4,other,financial assistance
+female,41,1,7,own,15,loan,loan more money,yes,2,414715,quarterly,9,other,financial assistance
+female,35,0.8,9,rent,17,other,dip into savings,no,2,443192,annually,6,other,financial assistance
+male,41,0.6,6,own,16,loan,loan more money,no,9,166793,quarterly,3,credit and financing,financial assistance
+female,30,1,1,own,7,mobile money,dip into savings,yes,8,85837,semi annually,7,inventory management,financial assistance
+male,54,0.4,9,own,12,bank payment,dip into savings,no,8,487925,annually,6,credit and financing,financial assistance
+male,24,0.8,4,rent,17,bank payment,loan more money,no,0,279573,monthly,8,credit and financing,financial assistance
+female,56,0.8,5,rent,17,cash,dip into savings,yes,3,409271,quarterly,0,credit and financing,business training
+male,37,1,7,own,9,loan,dip into savings,yes,4,271608,monthly,2,supply chain issues,financial assistance
+male,42,0.8,8,rent,3,loan,loan more money,yes,7,104570,monthly,1,other,financial assistance
+female,59,0.4,3,own,6,loan,dip into savings,no,0,291405,monthly,7,other,infrastructure improvements
+female,43,0.8,9,rent,10,loan,loan more money,no,1,246160,semi annually,0,inventory management,financial assistance
+male,23,0.2,4,own,15,loan,loan more money,no,1,211639,quarterly,0,other,financial assistance
+male,34,0.6,8,own,3,other,loan more money,no,0,407485,quarterly,5,other,business training
+female,51,1,6,own,0,cash,loan more money,no,6,479728,semi annually,4,other,infrastructure improvements
+female,39,1,2,rent,5,bank payment,dip into savings,no,4,330191,semi annually,7,other,financial assistance
+female,56,1,2,own,3,cash,loan more money,no,5,354667,quarterly,5,credit and financing,business training
+male,24,0.8,4,own,0,mobile money,dip into savings,yes,8,384568,semi annually,1,credit and financing,financial assistance
+male,40,0.6,8,own,10,bank payment,loan more money,no,9,328999,quarterly,6,other,business training
+female,47,0.6,2,rent,6,loan,loan more money,yes,4,134895,monthly,7,supply chain issues,infrastructure improvements
+female,36,0.2,3,own,13,loan,dip into savings,yes,9,369812,monthly,3,credit and financing,business training
+female,59,1,1,rent,8,mobile money,dip into savings,no,8,421773,quarterly,9,supply chain issues,business training
+male,54,1,9,rent,17,loan,loan more money,yes,2,385288,quarterly,8,supply chain issues,infrastructure improvements
+male,40,0.6,3,own,8,bank payment,dip into savings,yes,9,240100,semi annually,2,other,financial assistance
+female,49,0.6,5,own,19,loan,dip into savings,no,8,69244,semi annually,2,inventory management,infrastructure improvements
+male,40,0.2,5,own,4,cash,dip into savings,yes,4,326373,quarterly,4,other,business training
+female,21,0.8,6,own,19,mobile money,loan more money,no,2,452973,semi annually,1,supply chain issues,infrastructure improvements
+male,41,0.2,5,own,12,other,loan more money,no,3,389459,semi annually,2,credit and financing,infrastructure improvements
+female,38,0.4,7,rent,12,other,dip into savings,yes,5,418950,semi annually,7,credit and financing,financial assistance
+male,54,0.6,1,rent,4,mobile money,loan more money,no,8,295726,quarterly,9,supply chain issues,infrastructure improvements
+female,48,0.8,5,rent,14,loan,dip into savings,no,4,494040,semi annually,1,inventory management,business training
+female,21,0.4,3,rent,2,cash,dip into savings,yes,3,392357,annually,6,inventory management,infrastructure improvements
+female,52,1,7,rent,1,loan,dip into savings,no,3,431467,semi annually,1,supply chain issues,business training
+male,40,0.2,3,own,12,cash,dip into savings,no,3,229583,annually,4,supply chain issues,financial assistance
+male,59,0.8,9,rent,17,cash,loan more money,yes,7,310843,semi annually,1,other,financial assistance
+female,35,1,5,rent,0,mobile money,dip into savings,yes,4,393463,quarterly,0,credit and financing,business training
+female,24,0.6,4,own,10,bank payment,dip into savings,no,2,176009,monthly,6,supply chain issues,financial assistance
+female,40,0.8,7,rent,15,cash,loan more money,no,7,235361,annually,2,other,infrastructure improvements
+female,39,0.8,6,own,1,other,dip into savings,yes,8,431261,semi annually,4,credit and financing,financial assistance
+male,56,0.4,2,rent,7,cash,loan more money,no,5,293480,quarterly,2,other,infrastructure improvements
+female,55,0.6,8,rent,5,bank payment,loan more money,no,0,301959,semi annually,0,supply chain issues,infrastructure improvements
+male,59,1,3,rent,12,other,loan more money,no,9,440969,semi annually,2,other,infrastructure improvements
+male,25,0.4,9,rent,5,bank payment,loan more money,no,9,189193,quarterly,8,inventory management,infrastructure improvements
+female,59,0.8,3,rent,6,mobile money,loan more money,no,1,375156,annually,5,other,financial assistance
+female,32,0.6,8,rent,12,other,loan more money,no,4,337166,quarterly,5,credit and financing,infrastructure improvements
+female,51,0.2,8,own,9,mobile money,dip into savings,yes,0,270245,monthly,1,supply chain issues,financial assistance
+male,56,0.2,7,own,9,mobile money,dip into savings,yes,1,356885,annually,3,supply chain issues,financial assistance
+male,28,0.8,1,own,4,loan,loan more money,no,3,486124,monthly,3,credit and financing,business training
+male,38,1,3,rent,14,bank payment,dip into savings,yes,7,491971,semi annually,2,credit and financing,financial assistance
+female,42,0.8,5,own,4,cash,dip into savings,no,7,120532,annually,3,credit and financing,business training
+female,31,0.8,7,rent,19,bank payment,loan more money,no,2,379786,semi annually,4,other,financial assistance
+male,56,0.4,8,own,12,mobile money,dip into savings,no,6,108904,semi annually,2,other,financial assistance
+female,48,0.8,7,rent,7,bank payment,dip into savings,yes,0,353236,monthly,5,supply chain issues,financial assistance
+male,34,0.8,3,own,9,other,dip into savings,no,1,462024,annually,1,other,business training
+female,39,1,3,own,2,bank payment,dip into savings,no,5,376178,quarterly,3,inventory management,business training
+male,22,0.8,5,rent,4,cash,loan more money,yes,4,180681,annually,5,other,financial assistance
+female,56,0.8,8,rent,1,loan,loan more money,yes,2,413575,semi annually,9,supply chain issues,financial assistance
+female,56,1,6,own,4,cash,loan more money,no,3,397740,annually,0,credit and financing,infrastructure improvements
+female,56,1,3,own,6,cash,loan more money,yes,2,117448,annually,9,other,infrastructure improvements
+female,46,0.4,3,rent,8,loan,dip into savings,yes,4,222822,annually,4,other,business training
+female,30,0.8,8,rent,17,loan,loan more money,no,1,279346,quarterly,9,inventory management,business training
+female,41,0.4,1,rent,5,loan,dip into savings,yes,8,165111,semi annually,5,supply chain issues,financial assistance
+female,21,0.4,7,own,18,loan,loan more money,no,6,144310,quarterly,5,supply chain issues,financial assistance
+female,48,0.2,1,rent,6,mobile money,loan more money,yes,6,445252,annually,2,inventory management,business training
+female,34,1,8,rent,14,other,dip into savings,no,3,298252,quarterly,7,other,business training
+male,28,0.4,6,rent,17,bank payment,dip into savings,yes,1,404075,annually,8,credit and financing,infrastructure improvements
+male,53,0.2,2,own,8,cash,dip into savings,no,9,258054,annually,0,credit and financing,business training
+male,20,0.8,3,rent,11,mobile money,loan more money,yes,6,85907,annually,4,supply chain issues,business training
+female,21,0.2,3,rent,12,loan,dip into savings,no,5,69533,quarterly,2,inventory management,infrastructure improvements
+male,48,0.6,1,own,15,loan,dip into savings,yes,7,370910,semi annually,4,credit and financing,business training
+male,38,0.4,1,rent,6,bank payment,loan more money,no,8,412177,monthly,5,credit and financing,financial assistance
+male,45,0.4,4,own,10,loan,loan more money,yes,7,232636,semi annually,5,inventory management,infrastructure improvements
+male,41,0.4,8,own,11,other,loan more money,yes,2,79140,annually,0,supply chain issues,business training
+male,50,0.6,2,own,16,other,dip into savings,no,9,257873,semi annually,9,credit and financing,financial assistance
+male,50,0.4,8,own,2,other,loan more money,no,6,233018,quarterly,7,inventory management,infrastructure improvements
+female,47,0.2,3,own,13,cash,dip into savings,yes,6,493129,quarterly,8,supply chain issues,business training
+female,39,0.6,3,own,12,cash,loan more money,no,7,189395,monthly,8,inventory management,business training
+male,33,0.2,6,rent,15,bank payment,dip into savings,no,5,347832,monthly,5,inventory management,business training
+male,37,1,4,own,5,loan,dip into savings,no,1,112211,semi annually,1,other,infrastructure improvements
+male,48,0.4,9,own,7,bank payment,loan more money,yes,1,259885,annually,4,inventory management,infrastructure improvements
+female,34,0.6,5,own,3,bank payment,loan more money,no,9,422109,monthly,7,other,infrastructure improvements
+female,27,0.2,4,rent,17,other,dip into savings,no,8,276904,annually,1,inventory management,infrastructure improvements
+female,32,0.8,8,rent,5,other,dip into savings,yes,2,196774,annually,7,credit and financing,financial assistance
+male,38,0.8,1,rent,16,bank payment,dip into savings,no,1,116764,semi annually,9,credit and financing,financial assistance
+female,25,0.4,5,own,14,cash,dip into savings,yes,1,145798,quarterly,7,other,infrastructure improvements
+female,34,1,4,own,6,bank payment,loan more money,no,5,120584,monthly,1,supply chain issues,infrastructure improvements
+female,52,0.2,1,own,9,cash,dip into savings,yes,5,267893,monthly,4,inventory management,business training
+female,44,1,9,rent,16,other,dip into savings,no,5,303076,quarterly,9,supply chain issues,financial assistance
+female,53,0.2,4,own,2,bank payment,dip into savings,no,4,398870,semi annually,4,other,financial assistance
+male,58,0.6,3,rent,1,loan,loan more money,yes,8,219530,quarterly,4,supply chain issues,infrastructure improvements
+female,49,0.4,1,own,2,loan,dip into savings,no,5,373333,quarterly,4,inventory management,business training
+female,29,0.2,8,own,1,cash,loan more money,yes,4,218641,annually,2,supply chain issues,business training
+female,38,0.6,2,rent,0,mobile money,dip into savings,yes,9,449533,semi annually,9,other,business training
+female,20,1,6,own,4,mobile money,loan more money,yes,4,138415,annually,8,other,infrastructure improvements
+female,47,1,4,own,10,loan,loan more money,yes,1,70856,annually,5,credit and financing,financial assistance
+male,41,0.8,4,rent,12,mobile money,dip into savings,no,5,232945,monthly,2,supply chain issues,business training
+female,49,1,9,own,7,cash,dip into savings,no,1,251394,semi annually,2,inventory management,business training
+male,37,0.8,5,rent,8,other,loan more money,yes,2,418052,quarterly,3,other,infrastructure improvements
+female,42,0.2,5,own,15,loan,dip into savings,no,4,190486,annually,1,other,financial assistance
+female,38,0.8,2,rent,0,bank payment,dip into savings,no,1,463875,quarterly,4,inventory management,financial assistance
+male,31,0.4,6,own,17,other,loan more money,no,6,165135,semi annually,7,credit and financing,infrastructure improvements
+female,20,0.8,1,own,5,other,loan more money,yes,0,165961,semi annually,2,supply chain issues,financial assistance
+male,30,1,3,rent,15,mobile money,loan more money,yes,4,303654,monthly,4,supply chain issues,infrastructure improvements
+male,50,0.4,7,rent,4,bank payment,dip into savings,no,2,115893,annually,4,supply chain issues,infrastructure improvements
+male,56,0.6,8,rent,8,loan,dip into savings,yes,8,373897,monthly,4,credit and financing,infrastructure improvements
+male,41,0.8,1,rent,18,mobile money,dip into savings,yes,3,88911,semi annually,0,inventory management,financial assistance
+female,29,0.6,8,rent,3,cash,dip into savings,yes,0,287686,annually,9,other,business training
+female,34,1,2,rent,12,loan,loan more money,yes,3,195986,monthly,8,supply chain issues,financial assistance
+female,40,1,5,rent,18,bank payment,loan more money,yes,5,349106,annually,0,other,financial assistance
+male,47,0.8,4,rent,13,other,dip into savings,yes,0,246816,quarterly,5,credit and financing,infrastructure improvements
+male,27,0.6,1,rent,4,bank payment,dip into savings,no,5,220455,quarterly,8,credit and financing,infrastructure improvements
+male,40,0.4,7,own,15,other,dip into savings,no,5,351570,annually,9,supply chain issues,business training
+female,58,0.4,4,own,6,cash,dip into savings,yes,9,440301,semi annually,6,other,infrastructure improvements
+female,32,1,6,own,15,other,loan more money,yes,1,185263,monthly,4,other,financial assistance
+female,54,0.8,3,rent,19,cash,loan more money,yes,8,457049,annually,2,other,business training
+male,24,0.6,6,own,10,cash,loan more money,yes,5,165312,quarterly,3,supply chain issues,business training
+male,31,1,9,own,14,mobile money,dip into savings,yes,4,176657,monthly,6,credit and financing,financial assistance
+male,26,0.2,5,own,19,mobile money,loan more money,no,9,387945,semi annually,5,credit and financing,financial assistance
+male,59,1,1,own,13,loan,dip into savings,no,4,150447,semi annually,8,supply chain issues,business training
+male,32,0.6,7,own,5,cash,dip into savings,yes,0,140778,quarterly,6,inventory management,financial assistance
+male,40,0.6,5,rent,13,mobile money,dip into savings,yes,0,384147,monthly,9,inventory management,financial assistance
+female,41,1,9,own,7,cash,loan more money,no,5,412993,annually,6,inventory management,business training
+female,48,0.8,8,own,14,bank payment,loan more money,no,5,98131,quarterly,5,credit and financing,infrastructure improvements
+female,39,1,4,own,7,mobile money,loan more money,yes,3,128525,semi annually,5,other,business training
+female,20,0.6,8,own,17,mobile money,loan more money,yes,8,473498,monthly,4,other,financial assistance
+female,22,0.6,9,rent,16,mobile money,dip into savings,no,4,281681,monthly,8,supply chain issues,financial assistance
+male,50,0.4,2,own,12,cash,dip into savings,yes,6,69059,monthly,2,supply chain issues,business training
+male,55,0.8,6,rent,17,cash,dip into savings,yes,8,109456,annually,3,other,financial assistance
+female,36,0.8,7,rent,1,loan,loan more money,yes,0,68846,annually,7,other,infrastructure improvements
+female,34,0.6,7,own,17,bank payment,loan more money,no,7,72599,annually,3,inventory management,infrastructure improvements
+male,47,0.2,8,rent,7,loan,dip into savings,yes,8,184894,quarterly,3,credit and financing,infrastructure improvements
+male,27,0.8,4,rent,18,cash,dip into savings,no,8,475228,semi annually,2,inventory management,infrastructure improvements
+male,25,0.4,1,rent,13,cash,dip into savings,yes,7,466270,quarterly,9,other,business training
+male,20,0.6,6,own,15,bank payment,loan more money,no,4,211812,semi annually,6,inventory management,financial assistance
+male,30,0.4,4,rent,15,other,dip into savings,no,5,211335,monthly,0,credit and financing,business training
+female,36,0.8,4,rent,1,other,dip into savings,no,9,394833,annually,2,inventory management,business training
+female,56,0.6,3,rent,9,bank payment,loan more money,yes,8,124951,monthly,9,inventory management,infrastructure improvements
+male,28,0.4,1,own,19,cash,loan more money,yes,3,326076,quarterly,1,other,infrastructure improvements
+female,47,0.6,4,rent,17,loan,dip into savings,no,1,237987,monthly,5,other,infrastructure improvements
+female,52,0.2,7,own,3,other,loan more money,yes,1,419463,quarterly,1,supply chain issues,infrastructure improvements
+female,54,0.4,2,rent,8,loan,dip into savings,yes,5,296919,monthly,4,other,business training
+female,57,0.4,7,own,13,cash,loan more money,no,1,280302,monthly,2,inventory management,financial assistance
+female,25,0.4,2,rent,7,mobile money,loan more money,yes,6,492961,quarterly,6,supply chain issues,business training
+male,33,0.6,1,own,0,bank payment,loan more money,no,6,446544,quarterly,8,inventory management,infrastructure improvements
+male,57,0.4,6,rent,2,bank payment,loan more money,no,1,426777,semi annually,5,supply chain issues,business training
+female,48,1,3,own,15,cash,dip into savings,no,8,381773,quarterly,9,other,business training
