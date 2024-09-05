@@ -20,12 +20,12 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
         #weight for total amount in debt=30%,remaining=50%
     weight_amount_in_debt = 0.3
     debt_ranges = [(0, 50000), (50000, 100000), (100000, 150000),(150000,200000),(200000,250000),(250000,300000),(300000,350000),(350000,400000),(400000,450000),(450000,500000)]
-    weights = [0.1, 0.2, 0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+    weights_debt_amount = [0.1, 0.2, 0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
 
     for start, end in debt_ranges:
         if start <= total_amount_in_debt < end:
-            cred += weights[debt_ranges.index((start, end))] * weight_amount_in_debt
-        
+            cred += weights_debt_amount[debt_ranges.index((start, end))] * weight_amount_in_debt
+            return cred
     #weight for customer payment method=25%,remaining=25%
     weight_payment=0.25
     if(customer_payment_method=="cash"):
@@ -35,29 +35,30 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
     elif(customer_payment_method=="loan"):
             cred+=0.1*weight_payment
     else:cred+=0
-    
+
     #last 25%for housing issues and situations
-    for dependants in housing_situation:
-        weight_housing=0.25*0.3#It takes up 30% of the 25%
-        if(dependants==0):
-            cred+=0
-        cred+=dependants/10*weight_housing
-        return cred
-    for ownership in own_vs_rent:
+    weight_housing=0.25*0.3#It takes up 30% of the 25%
+    dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float('inf'))]
+    weights_housing_amount=[1,5/6,2/3,1/2,1/3,1/6]
+    for start,end in dependant_ranges:
+        if start<=housing_situation<end:
+            cred+=weights_housing_amount[dependant_ranges.inded((start,end))]*weight_housing
+            return cred
+        
         weight_ownership=0.25*0.25  #Takes up 25% of the 25%
-        if(ownership=="own"):
+        if(own_vs_rent=="own"):
             cred+=0.7*weight_ownership
-        elif(ownership=="rent"):
+        elif(own_vs_rent=="rent"):
             cred+=0.3*weight_ownership
         return cred  
-    for emergency in emergency_handling:#takes 45% of the 25%
-        weight_emergency=0.45*0.25
-        if(emergency=="dip into savings"):
+    #takes 45% of the 25%
+    weight_emergency=0.45*0.25
+    if(emergency_handling=="dip into savings"):
             cred+=0.7*weight_emergency
-        elif(emergency=="loan more"):
+    elif(emergency_handling=="loan more"):
             cred=+0.3*weight_emergency
-        else:cred+=0
-        return cred
+    else:cred+=0
+    return cred
     return cred
 
 def MaturityIndex(age,years_in_business):
