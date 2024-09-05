@@ -2,16 +2,11 @@
 import pandas as pd 
 import numpy as np 
 
-#Importing the data
-df_credit = pd.read_csv('data2.csv',index_col=0)
-#Searching for Missings,type of data and also known the shape of data
-print(df_credit.describe())
-
 #Overall Function Weights
 weight_CreditUtilization=0.2
-weight_PaymentHistory=0.45
+weight_PaymentHistory=0.5
 weight_MaturityIndex=0.05
-weight_LoanTerm=0.15
+weight_LoanTerm=0.1
 weight_CreditAccounts=0.15
 
 #Finding a credit utilization score
@@ -21,18 +16,16 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
     if(financial_literacy=="yes"):
         cred+=0.2
         return cred
+    else:cred+=0
         #weight for total amount in debt=30%,remaining=50%
-    def amount_in_debt(total_amount_in_debt):
-        start=50000
-        steps=50000
-        iter=8
-        n=0
-        while n<iter:
-            if(total_amount_in_debt>start and total_amount_in_debt<=start+steps):
-                cred+=0.075
-                n+=1
-                start+=steps
-                return cred
+    weight_amount_in_debt = 0.3
+    debt_ranges = [(0, 50000), (50000, 100000), (100000, 150000),(150000,200000),(200000,250000),(250000,300000),(300000,350000),(350000,400000),(400000,450000),(450000,500000)]
+    weights = [0.1, 0.2, 0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+
+    for start, end in debt_ranges:
+        if start <= total_amount_in_debt < end:
+            cred += weights[debt_ranges.index((start, end))] * weight_amount_in_debt
+        
     #weight for customer payment method=25%,remaining=25%
     for payment in customer_payment_method:
         weight_payment=0.25
@@ -91,17 +84,15 @@ def MaturityIndex(age,years_in_business):
 
 def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term):
     cred=0
-    def monthly_affordability( monthly_demo_affordability,total_amount_in_debt):
     #Starting with 35% for monthly demonstrated affordability
-        weight_monthly_affordability=0.35
-        if(monthly_demo_affordability<=0):
+    weight_monthly_affordability=0.35
+    if(monthly_demo_affordability<=0):
             cred+=0
-            affordability_ratios=[1/3,2/3,1]
-            for ratio in affordability_ratios:
-                if(monthly_demo_affordability<=ratio*total_amount_in_debt):
-                    cred+=ratio*weight_monthly_affordability
-                    break
-                return cred
+    affordability_ratios=[1/8,1/4,3/8,1/2,5/8,3/4,7/8,1]
+    for ratio in affordability_ratios:
+        if(monthly_demo_affordability<=ratio*total_amount_in_debt):
+            cred+=ratio*weight_monthly_affordability
+            break
     
 
     #Number of overdue installments has a 25% weight here
@@ -134,7 +125,7 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
 
     #Highest Past Due days has a 5% weight here
     weight_past_due_days = 0.05
-    past_due_ranges = [(0, loan_term), (loan_term, float('inf'))]
+    past_due_ranges = [(0, 7), (7, float('inf'))]
     weights = [1, 0.5]
 
     for start, end in past_due_ranges:
@@ -158,7 +149,7 @@ def CreditAccounts(num_credit_accounts,total_open_contracts):
             cred += 0.3 * weight
     return cred
 
-def LoanTerm(loan_term,main_challenges,monthly_demo_affordability):
+def LoanTerm(loan_term):
     cred=0
     #here the period for payment has the weight of 70%
     weight_payback_period=0.7
@@ -198,6 +189,7 @@ def calculate_credit_score(financial_literacy,
                                            num_overdue_installments=num_overdue_installments,
                                            max_past_due_amount=max_past_due_amount,
                                            max_past_due_days=max_past_due_days,
+                                           loan_term=loan_term,
                                            total_amount_in_debt=total_amount_in_debt)
             credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
                                            total_open_contracts=total_open_contracts)
@@ -206,10 +198,10 @@ def calculate_credit_score(financial_literacy,
             credit_score=(weight_CreditAccounts*credit_accounts)+(weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+(weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
             return credit_score
 
-def approve_loan(credit_score,scalability_factor):
-    min_credit_score=0.4
+def approve_loan(credit_score):
     max_loan_amount=500000
     min_loan_amount=50000
+    min_credit_score=(min_loan_amount/max_loan_amount)-0.01
     if(credit_score<min_credit_score):
         print("Sorry,you do not qualify for a loan.")
     else: loan=credit_score*max_loan_amount
@@ -217,16 +209,16 @@ def approve_loan(credit_score,scalability_factor):
 
 
 # Sample users
-user=pd.DataFrame[{
+user={
         "financial_literacy":"yes",
-        "total_amount_in_debt":49775,
+        "total_amount_in_debt":497750,
         "customer_payment_method":"cash",
-        "housing_situation":9,
+        "housing_situation":3,
         "own_vs_rent":"rent",
         "emergency_handling":"dip into savings",
         "age":32,
         "years_in_business":8,
-        "monthly_demo_affordability":30000,
+        "monthly_demo_affordability":3000,
         "num_overdue_installments":2,
         "num_credit_inquiries":6,
         "max_past_due_amount":60000,
@@ -234,13 +226,28 @@ user=pd.DataFrame[{
         "loan_term":"a week",
        " num_credit_accounts":7,
         "total_open_contracts" :4      
-    }]
+    }
 
-credit_score_user = calculate_credit_score(
-        age=user['age']
+credit_score_user=calculate_credit_score(
+        financial_literacy = user.get("financial_literacy", "unknown"),
+        total_amount_in_debt = user.get("total_amount_in_debt", 0),
+        customer_payment_method = user.get("customer_payment_method", "unknown"),
+        housing_situation = user.get("housing_situation", 0),
+        own_vs_rent = user.get("own_vs_rent", "unknown"),
+        emergency_handling = user.get("emergency_handling", "unknown"),
+        age = user.get("age", 0),
+        years_in_business = user.get("years_in_business", 0),
+        monthly_demo_affordability = user.get("monthly_demo_affordability", 0),
+        num_overdue_installments = user.get("num_overdue_installments", 0),
+        num_credit_inquiries = user.get("num_credit_inquiries", 0),
+        max_past_due_amount = user.get("max_past_due_amount", 0),
+        max_past_due_days = user.get("max_past_due_days", 0),
+        loan_term = user.get("loan_term", "unknown"),
+        num_credit_accounts = user.get("num_credit_accounts", 0),
+        total_open_contracts = user.get("total_open_contracts", 0),
+        )
 
-    )
-print(f"User Credit Score: {credit_score_user:,} TSH")
+print(f"User Credit Score: {credit_score_user:,} creds")
 
 loan_given=approve_loan(credit_score=credit_score_user)
 print(loan_given)
