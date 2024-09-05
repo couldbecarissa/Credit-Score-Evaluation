@@ -27,16 +27,15 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
             cred += weights[debt_ranges.index((start, end))] * weight_amount_in_debt
         
     #weight for customer payment method=25%,remaining=25%
-    for payment in customer_payment_method:
-        weight_payment=0.25
-        if(payment=="cash"):
-            cred+=0.5*weight_payment
-        elif(payment=="mobile money" or payment=="bank payment"):
+    weight_payment=0.25
+    if(customer_payment_method=="cash"):
+        cred+=0.5*weight_payment
+    elif(customer_payment_method=="mobile money" or customer_payment_method=="bank payment"):
             cred+=0.2*weight_payment
-        elif(payment=="loan"):
+    elif(customer_payment_method=="loan"):
             cred+=0.1*weight_payment
-        else:cred+=0
-        return cred
+    else:cred+=0
+    
     #last 25%for housing issues and situations
     for dependants in housing_situation:
         weight_housing=0.25*0.3#It takes up 30% of the 25%
