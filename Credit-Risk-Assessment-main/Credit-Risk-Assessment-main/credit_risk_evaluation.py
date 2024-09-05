@@ -1,38 +1,40 @@
 #Load the librarys
-import pandas as pd #To work with dataset
-import numpy as np #Math library
-import seaborn as sns #Graph library that use matplot in background
-import matplotlib.pyplot as plt #to plot some parameters in seaborn
+import pandas as pd 
+import numpy as np 
 
 #Importing the data
 df_credit = pd.read_csv('data2.csv',index_col=0)
 #Searching for Missings,type of data and also known the shape of data
-print(df_credit.info())
-#Looking unique values
-print(df_credit.nunique())
 print(df_credit.describe())
 
+#Overall Function Weights
+weight_CreditUtilization=0.2
+weight_PaymentHistory=0.45
+weight_MaturityIndex=0.05
+weight_LoanTerm=0.15
+weight_CreditAccounts=0.15
+
 #Finding a credit utilization score
-def CreditUtilization(data):
+def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_method,housing_situation,own_vs_rent,emergency_handling):
     cred=0
     #weight for financial literacy=20%,remaining=80%
-    if(data['financial_literacy']=="yes"):
+    if(financial_literacy=="yes"):
         cred+=0.2
         return cred
         #weight for total amount in debt=30%,remaining=50%
-    for amount in data['total_amount_in_debt']:
+    def amount_in_debt(total_amount_in_debt):
         start=50000
         steps=50000
         iter=8
         n=0
         while n<iter:
-            if(amount>start and amount<=start+steps):
+            if(total_amount_in_debt>start and total_amount_in_debt<=start+steps):
                 cred+=0.075
                 n+=1
                 start+=steps
                 return cred
     #weight for customer payment method=25%,remaining=25%
-    for payment in data['customer_payment_method']:
+    for payment in customer_payment_method:
         weight_payment=0.25
         if(payment=="cash"):
             cred+=0.5*weight_payment
@@ -43,20 +45,20 @@ def CreditUtilization(data):
         else:cred+=0
         return cred
     #last 25%for housing issues and situations
-    for dependants in data['housing_situation']:
+    for dependants in housing_situation:
         weight_housing=0.25*0.3#It takes up 30% of the 25%
         if(dependants==0):
             cred+=0
         cred+=dependants/10*weight_housing
         return cred
-    for ownership in data['own_vs_rent']:
+    for ownership in own_vs_rent:
         weight_ownership=0.25*0.25  #Takes up 25% of the 25%
         if(ownership=="own"):
             cred+=0.7*weight_ownership
         elif(ownership=="rent"):
             cred+=0.3*weight_ownership
         return cred  
-    for emergency in data['emergency_handling']:#takes 45% of the 25%
+    for emergency in emergency_handling:#takes 45% of the 25%
         weight_emergency=0.45*0.25
         if(emergency=="dip into savings"):
             cred+=0.7*weight_emergency
@@ -66,5 +68,179 @@ def CreditUtilization(data):
         return cred
     return cred
 
-df_credit2=df_credit.apply(CreditUtilization)
-print(df_credit2)
+def MaturityIndex(age,years_in_business):
+    cred=0
+    weights = [0.2, 0.4, 0.8, 1.0]
+    #years in business has a weight of 60% here
+    weight_years_in_business = 0.6
+    years_in_business_ranges = [(0, 2), (2, 3), (3, 6), (6, float('inf'))]
+    
+
+    for start, end in years_in_business_ranges:
+        if start <= years_in_business < end:
+            cred += weights[years_in_business_ranges.index((start, end))] * weight_years_in_business
+            break
+    #age has a weight of 40%
+    weight_age=0.4
+    age_ranges=[(18,30),(31,45),(46,60),(61,65)]
+    for start,end in age_ranges:
+        if start<=age<end:
+            cred+=weights[age_ranges.index((start,end))]*weight_age
+            break
+    return cred
+
+def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term):
+    cred=0
+    def monthly_affordability( monthly_demo_affordability,total_amount_in_debt):
+    #Starting with 35% for monthly demonstrated affordability
+        weight_monthly_affordability=0.35
+        if(monthly_demo_affordability<=0):
+            cred+=0
+            affordability_ratios=[1/3,2/3,1]
+            for ratio in affordability_ratios:
+                if(monthly_demo_affordability<=ratio*total_amount_in_debt):
+                    cred+=ratio*weight_monthly_affordability
+                    break
+                return cred
+    
+
+    #Number of overdue installments has a 25% weight here
+    weight_overdue_installments = 0.25
+    overdue_ranges = [(0, 2), (3, 5), (5, float('inf'))]
+    weights = [1, 0.6, 0.3]
+
+    for start, end in overdue_ranges:
+        if start <= num_overdue_installments < end:
+            cred += weights[overdue_ranges.index((start, end))] * weight_overdue_installments
+            break
+
+    #Number of credit enquiries is at 15% weight here
+    weight_credit_inquiries=0.15
+    if(0<=num_credit_inquiries<1):
+        cred+=weight_credit_inquiries
+    elif(1<num_credit_inquiries<4):
+        cred+=(1/3)*weight_credit_inquiries
+    elif(4<num_credit_inquiries<6):
+        cred+=(2/3)*weight_credit_inquiries
+    else:cred+=0
+
+    #Highest past due amount has a 20% weight here
+    weight_past_due_amount=0.2
+    if(max_past_due_amount==0 or max_past_due_amount<monthly_demo_affordability):
+        cred+=weight_past_due_amount
+    elif(max_past_due_amount>monthly_demo_affordability):
+        cred+=0.4*weight_past_due_amount
+    else:cred+=0
+
+    #Highest Past Due days has a 5% weight here
+    weight_past_due_days = 0.05
+    past_due_ranges = [(0, loan_term), (loan_term, float('inf'))]
+    weights = [1, 0.5]
+
+    for start, end in past_due_ranges:
+        if start <= max_past_due_days < end:
+            cred += weights[past_due_ranges.index((start, end))] * weight_past_due_days
+            break
+
+    return cred
+
+def CreditAccounts(num_credit_accounts,total_open_contracts):
+    cred=0
+    weight=0.5#both share the same weights
+    for variable in [num_credit_accounts, total_open_contracts]:
+        if variable < 0:
+            continue  # Handle negative values (if applicable)
+        if variable < 2:
+            cred+= weight
+        elif variable < 3:
+            cred += 0.6 * weight
+        elif variable < 6:
+            cred += 0.3 * weight
+    return cred
+
+def LoanTerm(loan_term,main_challenges,monthly_demo_affordability):
+    cred=0
+    #here the period for payment has the weight of 70%
+    weight_payback_period=0.7
+    if(loan_term=="one week"):
+        cred+=0.5*weight_payback_period
+    elif(loan_term=="two weeks"):
+        cred+=0.7*weight_payback_period
+    elif(loan_term=="a month"):
+        cred+=weight_payback_period
+    return cred
+
+"""
+Results from the above functions are in the range (0,1)
+"""
+def calculate_credit_score(financial_literacy,
+                           total_amount_in_debt,
+                           customer_payment_method,
+                           housing_situation,
+                           own_vs_rent,
+                           emergency_handling,
+                           age,years_in_business,
+                           monthly_demo_affordability,
+                           num_overdue_installments,num_credit_inquiries,
+                           max_past_due_amount,max_past_due_days,
+                           loan_term,
+                           num_credit_accounts,total_open_contracts        
+):
+            credit_util=CreditUtilization(financial_literacy=financial_literacy,
+                                          total_amount_in_debt=total_amount_in_debt,
+                                          customer_payment_method=customer_payment_method,
+                                          housing_situation=housing_situation,
+                                          own_vs_rent=own_vs_rent,
+                                          emergency_handling=emergency_handling)
+            maturity_index=MaturityIndex(age=age,years_in_business=years_in_business)
+            payment_history=PaymentHistory(monthly_demo_affordability=monthly_demo_affordability,
+                                           num_credit_inquiries=num_credit_inquiries,
+                                           num_overdue_installments=num_overdue_installments,
+                                           max_past_due_amount=max_past_due_amount,
+                                           max_past_due_days=max_past_due_days,
+                                           total_amount_in_debt=total_amount_in_debt)
+            credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
+                                           total_open_contracts=total_open_contracts)
+            loan_terms=LoanTerm(loan_term=loan_term)
+
+            credit_score=(weight_CreditAccounts*credit_accounts)+(weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+(weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
+            return credit_score
+
+def approve_loan(credit_score,scalability_factor):
+    min_credit_score=0.4
+    max_loan_amount=500000
+    min_loan_amount=50000
+    if(credit_score<min_credit_score):
+        print("Sorry,you do not qualify for a loan.")
+    else: loan=credit_score*max_loan_amount
+    return loan
+
+
+# Sample users
+user=pd.DataFrame[{
+        "financial_literacy":"yes",
+        "total_amount_in_debt":49775,
+        "customer_payment_method":"cash",
+        "housing_situation":9,
+        "own_vs_rent":"rent",
+        "emergency_handling":"dip into savings",
+        "age":32,
+        "years_in_business":8,
+        "monthly_demo_affordability":30000,
+        "num_overdue_installments":2,
+        "num_credit_inquiries":6,
+        "max_past_due_amount":60000,
+        "max_past_due_days":6,
+        "loan_term":"a week",
+       " num_credit_accounts":7,
+        "total_open_contracts" :4      
+    }]
+
+credit_score_user = calculate_credit_score(
+        age=user['age']
+
+    )
+print(f"User Credit Score: {credit_score_user:,} TSH")
+
+loan_given=approve_loan(credit_score=credit_score_user)
+print(loan_given)
