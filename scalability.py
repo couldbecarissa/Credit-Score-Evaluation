@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 
-user={
-
-}
 
 def ScaledPaymentHistory(max_past_due_days,max_past_due_amount,total_amount_in_debt,num_overdue_installments,monthly_demo_affordability):
     cred=1

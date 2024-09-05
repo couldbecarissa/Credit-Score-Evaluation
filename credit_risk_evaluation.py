@@ -231,7 +231,7 @@ def approve_loan(credit_score):
 # Sample users
 user={
         "financial_literacy":"no",
-        "total_amount_in_debt":497750,
+        "total_amount_in_debt":49750,
         "customer_payment_method":"cash",
         "housing_situation":3,
         "own_vs_rent":"own",
@@ -246,7 +246,7 @@ user={
         "loan_term":"a week",
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
-        "loan_interest_rate":5   
+        "loan_interest_rate":10   
     }
 
 credit_score_user=calculate_credit_score(
