@@ -176,6 +176,7 @@ def LoanTerm(loan_term,loan_interest_rate):
         break
     return cred
 
+
 """
 Results from the above functions are in the range (0,1)
 """
