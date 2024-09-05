@@ -45,18 +45,19 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
             cred+=weights_housing_amount[dependant_ranges.inded((start,end))]*weight_housing
             return cred
         
-        weight_ownership=0.25*0.25  #Takes up 25% of the 25%
-        if(own_vs_rent=="own"):
-            cred+=0.7*weight_ownership
-        elif(own_vs_rent=="rent"):
+    weight_ownership=0.25*0.25  #Takes up 25% of the 25%
+    if(own_vs_rent=="own"):
+        cred+=weight_ownership
+    elif(own_vs_rent=="rent"):
             cred+=0.3*weight_ownership
-        return cred  
+    else:cred+=0
+
     #takes 45% of the 25%
     weight_emergency=0.45*0.25
     if(emergency_handling=="dip into savings"):
-            cred+=0.7*weight_emergency
+            cred+=weight_emergency
     elif(emergency_handling=="loan more"):
-            cred=+0.3*weight_emergency
+            cred=+0.5*weight_emergency
     else:cred+=0
     return cred
     return cred
@@ -152,7 +153,7 @@ def CreditAccounts(num_credit_accounts,total_open_contracts):
         else:cred+=0
     return cred
 
-def LoanTerm(loan_term):
+def LoanTerm(loan_term,loan_interest_rate):
     cred=0
     #here the period for payment has the weight of 70%
     weight_payback_period=0.7
@@ -162,6 +163,17 @@ def LoanTerm(loan_term):
         cred+=0.7*weight_payback_period
     elif(loan_term=="a month"):
         cred+=weight_payback_period
+        return cred
+
+    #interest rate has a weight of 30%
+    weight_loan_interest = 0.3
+    interest_rate_ranges = [(0, 5), (5, 10), (10, 15), (15, 20)]
+    weights = [1, 0.5, 0.2, 0.1]
+
+    for start, end in interest_rate_ranges:
+        if start <= loan_interest_rate < end:
+            cred += weights[interest_rate_ranges.index((start, end))] * weight_loan_interest
+        break
     return cred
 
 """
@@ -178,7 +190,7 @@ def calculate_credit_score(financial_literacy,
                            num_overdue_installments,num_credit_inquiries,
                            max_past_due_amount,max_past_due_days,
                            loan_term,
-                           num_credit_accounts,total_open_contracts        
+                           num_credit_accounts,total_open_contracts,loan_interest_rate   
 ):
             credit_util=CreditUtilization(financial_literacy=financial_literacy,
                                           total_amount_in_debt=total_amount_in_debt,
@@ -196,7 +208,7 @@ def calculate_credit_score(financial_literacy,
                                            total_amount_in_debt=total_amount_in_debt)
             credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
                                            total_open_contracts=total_open_contracts)
-            loan_terms=LoanTerm(loan_term=loan_term)
+            loan_terms=LoanTerm(loan_term=loan_term,loan_interest_rate=loan_interest_rate)
 
             credit_score=(weight_CreditAccounts*credit_accounts)+(weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+(weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
             return credit_score
@@ -217,7 +229,7 @@ user={
         "total_amount_in_debt":497750,
         "customer_payment_method":"cash",
         "housing_situation":3,
-        "own_vs_rent":"rent",
+        "own_vs_rent":"own",
         "emergency_handling":"dip into savings",
         "age":32,
         "years_in_business":8,
@@ -228,7 +240,8 @@ user={
         "max_past_due_days":6,
         "loan_term":"a week",
        " num_credit_accounts":3,
-        "total_open_contracts" :4      
+        "total_open_contracts" :4, 
+        "loan_interest_rate":5   
     }
 
 credit_score_user=calculate_credit_score(
@@ -248,6 +261,7 @@ credit_score_user=calculate_credit_score(
         loan_term = user.get("loan_term", "unknown"),
         num_credit_accounts = user.get("num_credit_accounts", 0),
         total_open_contracts = user.get("total_open_contracts", 0),
+        loan_interest_rate=user.get("loan_interest_rate",0)
         )
 
 print(f"User Credit Score: {credit_score_user:,} creds")
