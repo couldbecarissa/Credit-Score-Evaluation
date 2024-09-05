@@ -107,13 +107,13 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
 
     #Number of credit enquiries is at 15% weight here
     weight_credit_inquiries=0.15
-    if(0<=num_credit_inquiries<1):
-        cred+=weight_credit_inquiries
-    elif(1<num_credit_inquiries<4):
-        cred+=(1/3)*weight_credit_inquiries
-    elif(4<num_credit_inquiries<6):
-        cred+=(2/3)*weight_credit_inquiries
-    else:cred+=0
+    credit_inquiry_ranges = [(0, 1), (1, 4), (4, 6)]
+    weights = [1, 1/3, 2/3]
+
+    for start, end in credit_inquiry_ranges:
+        if start <= num_credit_inquiries < end:
+            cred += weights[credit_inquiry_ranges.index((start, end))] * weight_credit_inquiries
+            break
 
     #Highest past due amount has a 20% weight here
     weight_past_due_amount=0.2
@@ -143,10 +143,13 @@ def CreditAccounts(num_credit_accounts,total_open_contracts):
             continue  # Handle negative values (if applicable)
         if variable < 2:
             cred+= weight
-        elif variable < 3:
-            cred += 0.6 * weight
+        elif variable < 4:
+            cred += 0.8 * weight
         elif variable < 6:
-            cred += 0.3 * weight
+            cred += 0.6 * weight
+        elif variable<8:
+             cred+=0.4*weight
+        else:cred+=0
     return cred
 
 def LoanTerm(loan_term):
@@ -224,7 +227,7 @@ user={
         "max_past_due_amount":60000,
         "max_past_due_days":6,
         "loan_term":"a week",
-       " num_credit_accounts":7,
+       " num_credit_accounts":3,
         "total_open_contracts" :4      
     }
 
