@@ -1,6 +1,8 @@
 #Load the librarys
 import pandas as pd 
 import numpy as np 
+import scalability
+from scalability import ScaledPaymentHistory
 
 #Overall Function Weights
 weight_CreditUtilization=0.2
@@ -126,8 +128,8 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
 
     #Highest Past Due days has a 5% weight here
     weight_past_due_days = 0.05
-    past_due_ranges = [(0, 7), (7, float('inf'))]
-    weights = [1, 0.5]
+    past_due_ranges = [(0, 20),(20,40),(40,60),(60,80),(80,100),(100,120),(120,140),(140,160),(160,180),(180,float('inf'))]
+    weights = [1, 0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1,0]
 
     for start, end in past_due_ranges:
         if start <= max_past_due_days < end:
@@ -176,7 +178,6 @@ def LoanTerm(loan_term,loan_interest_rate):
         break
     return cred
 
-
 """
 Results from the above functions are in the range (0,1)
 """
@@ -211,8 +212,11 @@ def calculate_credit_score(financial_literacy,
                                            total_open_contracts=total_open_contracts)
             loan_terms=LoanTerm(loan_term=loan_term,loan_interest_rate=loan_interest_rate)
 
-            credit_score=(weight_CreditAccounts*credit_accounts)+(weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+(weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
+            credit_score=(weight_CreditAccounts*credit_accounts)+\
+            (weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+\
+                (weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
             return credit_score
+
 
 def approve_loan(credit_score):
     max_loan_amount=500000
@@ -234,11 +238,11 @@ user={
         "emergency_handling":"dip into savings",
         "age":32,
         "years_in_business":8,
-        "monthly_demo_affordability":700000,
+        "monthly_demo_affordability":70000,
         "num_overdue_installments":2,
         "num_credit_inquiries":6,
         "max_past_due_amount":60000,
-        "max_past_due_days":6,
+        "max_past_due_days":100,
         "loan_term":"a week",
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
@@ -246,26 +250,34 @@ user={
     }
 
 credit_score_user=calculate_credit_score(
-        financial_literacy = user.get("financial_literacy", "unknown"),
-        total_amount_in_debt = user.get("total_amount_in_debt", 0),
-        customer_payment_method = user.get("customer_payment_method", "unknown"),
-        housing_situation = user.get("housing_situation", 0),
-        own_vs_rent = user.get("own_vs_rent", "unknown"),
-        emergency_handling = user.get("emergency_handling", "unknown"),
-        age = user.get("age", 0),
-        years_in_business = user.get("years_in_business", 0),
-        monthly_demo_affordability = user.get("monthly_demo_affordability", 0),
-        num_overdue_installments = user.get("num_overdue_installments", 0),
-        num_credit_inquiries = user.get("num_credit_inquiries", 0),
-        max_past_due_amount = user.get("max_past_due_amount", 0),
-        max_past_due_days = user.get("max_past_due_days", 0),
-        loan_term = user.get("loan_term", "unknown"),
-        num_credit_accounts = user.get("num_credit_accounts", 0),
-        total_open_contracts = user.get("total_open_contracts", 0),
-        loan_interest_rate=user.get("loan_interest_rate",0)
-        )
+            financial_literacy = user.get("financial_literacy", "unknown"),
+            total_amount_in_debt = user.get("total_amount_in_debt", 0),
+            customer_payment_method = user.get("customer_payment_method", "unknown"),
+            housing_situation = user.get("housing_situation", 0),
+            own_vs_rent = user.get("own_vs_rent", "unknown"),
+            emergency_handling = user.get("emergency_handling", "unknown"),
+            age = user.get("age", 0),
+            years_in_business = user.get("years_in_business", 0),
+            monthly_demo_affordability = user.get("monthly_demo_affordability", 0),
+            num_overdue_installments = user.get("num_overdue_installments", 0),
+            num_credit_inquiries = user.get("num_credit_inquiries", 0),
+            max_past_due_amount = user.get("max_past_due_amount", 0),
+            max_past_due_days = user.get("max_past_due_days", 0),
+            loan_term = user.get("loan_term", "unknown"),
+            num_credit_accounts = user.get("num_credit_accounts", 0),
+            total_open_contracts = user.get("total_open_contracts", 0),
+            loan_interest_rate=user.get("loan_interest_rate",0)
+            )
+#I will write another function to determine whether of not the credit score should be scaled
+scaled_credit_score_user=credit_score_user-(1-ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
+                                      max_past_due_amount=user.get("max_past_due_amount", 0),
+                                      total_amount_in_debt=user.get("total_amount_in_debt", 0),
+                                      num_overdue_installments= user.get("num_credit_inquiries", 0),
+                                      monthly_demo_affordability=user.get("monthly_demo_affordability", 0)
+                                      ))
 
 print(f"User Credit Score: {credit_score_user:,} creds")
+print(f"User Scaled Credit Score: {scaled_credit_score_user:,} creds")
 
 loan_given=approve_loan(credit_score=credit_score_user)
 print(loan_given)
