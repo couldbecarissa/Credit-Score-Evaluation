@@ -15,12 +15,12 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
     #weight for financial literacy=20%,remaining=80%
     if(financial_literacy=="yes"):
         cred+=0.2
-        return cred
-    else:cred+=0
+    elif financial_literacy=="no":
+         cred+=0
         #weight for total amount in debt=30%,remaining=50%
     weight_amount_in_debt = 0.3
     debt_ranges = [(0, 50000), (50000, 100000), (100000, 150000),(150000,200000),(200000,250000),(250000,300000),(300000,350000),(350000,400000),(400000,450000),(450000,500000)]
-    weights_debt_amount = [0.1, 0.2, 0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+    weights_debt_amount = [1, 0.9, 0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1]
 
     for start, end in debt_ranges:
         if start <= total_amount_in_debt < end:
@@ -64,10 +64,10 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
 
 def MaturityIndex(age,years_in_business):
     cred=0
-    weights = [0.2, 0.4, 0.8, 1.0]
+    weights = [0.2, 0.4,0.6, 0.8, 1.0]
     #years in business has a weight of 60% here
     weight_years_in_business = 0.6
-    years_in_business_ranges = [(0, 2), (2, 3), (3, 6), (6, float('inf'))]
+    years_in_business_ranges = [(0, 2), (3, 5), (6, 8), (9,11),(12, float('inf'))]
     
 
     for start, end in years_in_business_ranges:
@@ -76,7 +76,7 @@ def MaturityIndex(age,years_in_business):
             break
     #age has a weight of 40%
     weight_age=0.4
-    age_ranges=[(18,30),(31,45),(46,60),(61,65)]
+    age_ranges=[(18,24),(25,40),(41,50),(51,60),(61,65)]
     for start,end in age_ranges:
         if start<=age<end:
             cred+=weights[age_ranges.index((start,end))]*weight_age
@@ -226,7 +226,7 @@ def approve_loan(credit_score):
 
 # Sample users
 user={
-        "financial_literacy":"yes",
+        "financial_literacy":"no",
         "total_amount_in_debt":497750,
         "customer_payment_method":"cash",
         "housing_situation":3,
@@ -234,7 +234,7 @@ user={
         "emergency_handling":"dip into savings",
         "age":32,
         "years_in_business":8,
-        "monthly_demo_affordability":3000,
+        "monthly_demo_affordability":700000,
         "num_overdue_installments":2,
         "num_credit_inquiries":6,
         "max_past_due_amount":60000,
