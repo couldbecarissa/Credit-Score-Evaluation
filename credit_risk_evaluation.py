@@ -85,10 +85,10 @@ def MaturityIndex(age,years_in_business):
             break
     return cred
 
-def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term):
+def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term,household_region):
     cred=0
-    #Starting with 35% for monthly demonstrated affordability
-    weight_monthly_affordability=0.35
+    #Starting with 20% for monthly demonstrated affordability
+    weight_monthly_affordability=0.2
     if(monthly_demo_affordability<=0):
             cred+=0
     affordability_ratios=[1/8,1/4,3/8,1/2,5/8,3/4,7/8,1]
@@ -118,16 +118,16 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
             cred += weights[credit_inquiry_ranges.index((start, end))] * weight_credit_inquiries
             break
 
-    #Highest past due amount has a 20% weight here
-    weight_past_due_amount=0.2
+    #Highest past due amount has a 10% weight here
+    weight_past_due_amount=0.1
     if(max_past_due_amount==0 or max_past_due_amount<monthly_demo_affordability):
         cred+=weight_past_due_amount
     elif(max_past_due_amount>monthly_demo_affordability):
         cred+=0.4*weight_past_due_amount
     else:cred+=0
 
-    #Highest Past Due days has a 5% weight here
-    weight_past_due_days = 0.05
+    #Highest Past Due days has a 10% weight here
+    weight_past_due_days = 0.1
     past_due_ranges = [(0, 20),(20,40),(40,60),(60,80),(80,100),(100,120),(120,140),(140,160),(160,180),(180,float('inf'))]
     weights = [1, 0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1,0]
 
@@ -135,6 +135,11 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
         if start <= max_past_due_days < end:
             cred += weights[past_due_ranges.index((start, end))] * weight_past_due_days
             break
+    
+    #Regional GDP has a weight of 20%
+    rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
+    rgp['Region']=rgp["Region"].lower()
+    
 
     return cred
 
@@ -192,7 +197,7 @@ def calculate_credit_score(financial_literacy,
                            num_overdue_installments,num_credit_inquiries,
                            max_past_due_amount,max_past_due_days,
                            loan_term,
-                           num_credit_accounts,total_open_contracts,loan_interest_rate   
+                           num_credit_accounts,total_open_contracts,loan_interest_rate,household_region  
 ):
             credit_util=CreditUtilization(financial_literacy=financial_literacy,
                                           total_amount_in_debt=total_amount_in_debt,
@@ -207,6 +212,7 @@ def calculate_credit_score(financial_literacy,
                                            max_past_due_amount=max_past_due_amount,
                                            max_past_due_days=max_past_due_days,
                                            loan_term=loan_term,
+                                           household_region=household_region,
                                            total_amount_in_debt=total_amount_in_debt)
             credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
                                            total_open_contracts=total_open_contracts)
@@ -246,7 +252,8 @@ user={
         "loan_term":"a week",
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
-        "loan_interest_rate":10   
+        "loan_interest_rate":10,
+        "household_region":"morogoro" 
     }
 
 credit_score_user=calculate_credit_score(
@@ -266,7 +273,8 @@ credit_score_user=calculate_credit_score(
             loan_term = user.get("loan_term", "unknown"),
             num_credit_accounts = user.get("num_credit_accounts", 0),
             total_open_contracts = user.get("total_open_contracts", 0),
-            loan_interest_rate=user.get("loan_interest_rate",0)
+            loan_interest_rate=user.get("loan_interest_rate",0),
+            household_region=user.gt("household_region",0)
             )
 #I will write another function to determine whether of not the credit score should be scaled
 scaled_credit_score_user=credit_score_user-(1-ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
