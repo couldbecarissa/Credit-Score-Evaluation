@@ -138,8 +138,14 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
     
     #Regional GDP has a weight of 20%
     rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
-    rgp['Region']=rgp["Region"].lower()
-    
+    for region in rgp['Region']:
+        if(household_region==region):
+             index_find=rgp[rgp['Region'].astype(str).str.lower() == household_region.lower()]
+             index=index_find.index[0]
+             cred+=rgp.loc[index, 'Normalized GDP']
+             return cred
+             break
+        else:cred+=0
 
     return cred
 
@@ -274,7 +280,7 @@ credit_score_user=calculate_credit_score(
             num_credit_accounts = user.get("num_credit_accounts", 0),
             total_open_contracts = user.get("total_open_contracts", 0),
             loan_interest_rate=user.get("loan_interest_rate",0),
-            household_region=user.gt("household_region",0)
+            household_region=user.get("household_region",0)
             )
 #I will write another function to determine whether of not the credit score should be scaled
 scaled_credit_score_user=credit_score_user-(1-ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
