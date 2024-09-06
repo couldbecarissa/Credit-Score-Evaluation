@@ -140,7 +140,7 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
     rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
     for region in rgp['Region']:
         if(household_region==region):
-             index_find=rgp[rgp['Region'].astype(str).str.lower() == household_region.lower()]
+             index_find=rgp[rgp['Region'].astype(str).str.lower() == household_region.str.lower()]
              index=index_find.index[0]
              cred+=rgp.loc[index, 'Normalized GDP']
              return cred
