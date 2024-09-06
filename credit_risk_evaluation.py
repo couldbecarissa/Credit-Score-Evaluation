@@ -230,7 +230,7 @@ def approve_loan(credit_score):
 
 # Sample users
 user={
-        "financial_literacy":"no",
+        "financial_literacy":"yes",
         "total_amount_in_debt":49750,
         "customer_payment_method":"cash",
         "housing_situation":3,
