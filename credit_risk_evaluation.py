@@ -14,7 +14,7 @@ weight_LoanTerm=0.1
 weight_CreditAccounts=0.15
 
 #Finding a credit utilization score
-def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_method,housing_situation,own_vs_rent,emergency_handling):
+def CreditUtilization(financial_literacy,total_amount_in_debt,C7,B15,C3):
     cred=0
     #weight for financial literacy=20%,remaining=80%
     if(financial_literacy=="yes"):
@@ -24,35 +24,36 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
         #weight for total amount in debt=30%,remaining=50%
     weight_amount_in_debt = 0.3
     cred+=normalization.normalize_debt(debt=total_amount_in_debt)*weight_amount_in_debt
+
     #weight for customer payment method=25%,remaining=25%
     weight_payment=0.25
-    cred+=normalization.normalize_payment_methods(C7=customer_payment_method)*weight_payment
+    cred+=normalization.normalize_payment_methods(C7=C7)*weight_payment
 
     #last 25%for housing issues and situations
     weight_housing=0.75*0.3#It takes up 75% of the 25%
-    cred+=normalization.normalize_dependants(dependants=housing_situation)*weight_housing
+    cred+=normalization.normalize_dependants(dependants=B15)*weight_housing
         
     weight_ownership=0.25*0.25  #Takes up 25% of the 25%
-    if(own_vs_rent=="own"):
+    if(C3=="own"):
         cred+=weight_ownership
-    elif(own_vs_rent=="rent"):
+    elif(C3=="rent"):
             cred+=0.3*weight_ownership
     else:cred+=0
 
     return cred
 
-def MaturityIndex(age,years_in_business):
+def MaturityIndex(age,C6):
     cred=0
     #years in business has a weight of 60% here
     weight_years_in_business = 0.6
-    cred+=normalization.normalize_business_duration(C6=years_in_business)*weight_years_in_business
+    cred+=normalization.normalize_business_duration(C6=C6)*weight_years_in_business
 
     #age has a weight of 40%
     weight_age=0.4
     cred+=normalization.normalize_age(B3=age)*weight_age
     return cred
 
-def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term,household_region):
+def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,B5):
     cred=0
     #Starting with 20% for monthly demonstrated affordability
     weight_monthly_affordability=0.2
@@ -100,7 +101,7 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
     
     #Regional GDP has a weight of 20%
     weight_rgp=0.2
-    cred+=normalization.normalize_rgp(B5=household_region)*weight_rgp
+    cred+=normalization.normalize_rgp(B5=B5)*weight_rgp
 
     return cred
 
@@ -149,31 +150,28 @@ Results from the above functions are in the range (0,1)
 """
 def calculate_credit_score(financial_literacy,
                            total_amount_in_debt,
-                           customer_payment_method,
-                           housing_situation,
-                           own_vs_rent,
-                           emergency_handling,
-                           age,years_in_business,
+                           C7,
+                           B15,
+                           C3,
+                           age,C6,
                            monthly_demo_affordability,
                            num_overdue_installments,num_credit_inquiries,
                            max_past_due_amount,max_past_due_days,
                            loan_term,
-                           num_credit_accounts,total_open_contracts,loan_interest_rate,household_region  
+                           num_credit_accounts,total_open_contracts,loan_interest_rate,B5 
 ):
             credit_util=CreditUtilization(financial_literacy=financial_literacy,
                                           total_amount_in_debt=total_amount_in_debt,
-                                          customer_payment_method=customer_payment_method,
-                                          housing_situation=housing_situation,
-                                          own_vs_rent=own_vs_rent,
-                                          emergency_handling=emergency_handling)
-            maturity_index=MaturityIndex(age=age,years_in_business=years_in_business)
+                                          C7=C7,
+                                          B15=B15,
+                                          C3=C3)
+            maturity_index=MaturityIndex(age=age,C6=C6)
             payment_history=PaymentHistory(monthly_demo_affordability=monthly_demo_affordability,
                                            num_credit_inquiries=num_credit_inquiries,
                                            num_overdue_installments=num_overdue_installments,
                                            max_past_due_amount=max_past_due_amount,
                                            max_past_due_days=max_past_due_days,
-                                           loan_term=loan_term,
-                                           household_region=household_region,
+                                           B5=B5,
                                            total_amount_in_debt=total_amount_in_debt)
             credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
                                            total_open_contracts=total_open_contracts)
@@ -200,12 +198,11 @@ def should_calculate(user):
         credit_score_user=calculate_credit_score(
             financial_literacy = user.get("financial_literacy", "unknown"),
             total_amount_in_debt = user.get("total_amount_in_debt", 0),
-            customer_payment_method = user.get("customer_payment_method", "unknown"),
+            C7= user.get("C7", "unknown"),
             housing_situation = user.get("housing_situation", 0),
             own_vs_rent = user.get("own_vs_rent", "unknown"),
-            emergency_handling = user.get("emergency_handling", "unknown"),
             age = user.get("age", 0),
-            years_in_business = user.get("years_in_business", 0),
+            C6= user.get("C6", 0),
             monthly_demo_affordability = user.get("monthly_demo_affordability", 0),
             num_overdue_installments = user.get("num_overdue_installments", 0),
             num_credit_inquiries = user.get("num_credit_inquiries", 0),
@@ -215,7 +212,7 @@ def should_calculate(user):
             num_credit_accounts = user.get("num_credit_accounts", 0),
             total_open_contracts = user.get("total_open_contracts", 0),
             loan_interest_rate=user.get("loan_interest_rate",0),
-            household_region=user.get("household_region",0)
+            B5=user.get("B5",0)
             )
         return credit_score_user
     else: raise ValueError("You are not eligible for a loan")
