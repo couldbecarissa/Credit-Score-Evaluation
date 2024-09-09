@@ -1,10 +1,6 @@
 import numpy as np
 import normalization
 
-user={
-
-}
-
 def MaturityIndex(age,years_in_business):
     cred=0
     #years in business has a weight of 60% here
