@@ -38,5 +38,5 @@ scaled_credit_score_user=(credit_score_user*scaled_credit)/(credit_score_user+sc
 print(f"User Credit Score: {credit_score_user:,} creds")
 print(f"User Scaled Credit Score: {scaled_credit_score_user:,} creds")
 
-loan_given=credit_risk_evaluation.approve_loan(credit_score=credit_score_user)
+loan_given=np.round(credit_risk_evaluation.approve_loan(credit_score=credit_score_user))
 print(loan_given)

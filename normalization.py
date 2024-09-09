@@ -91,7 +91,7 @@ def normalize_dependants(dependants):
     weights_housing_amount=[1,5/6,2/3,1/2,1/3,1/6]
     for start,end in dependant_ranges:
         if start<=dependants<end:
-            return weights_housing_amount[dependant_ranges.inded((start,end))]
+            return weights_housing_amount[dependant_ranges.index((start,end))]
         else:return 0
 
 def normalize_debt(debt):
