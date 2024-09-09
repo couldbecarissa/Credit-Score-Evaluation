@@ -42,5 +42,4 @@ def ScaledPaymentHistory(max_past_due_days,max_past_due_amount,total_amount_in_d
 
     return cred
     
-
     

@@ -26,13 +26,14 @@ user={
     }
 
 credit_score_user=credit_risk_evaluation.should_calculate(user=user)
-#I will write another function to determine whether of not the credit score should be scaled
-scaled_credit_score_user=credit_score_user-(1-scalability.ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
+scaled_credit=scalability.ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
                                       max_past_due_amount=user.get("max_past_due_amount", 0),
                                       total_amount_in_debt=user.get("total_amount_in_debt", 0),
                                       num_overdue_installments= user.get("num_credit_inquiries", 0),
                                       monthly_demo_affordability=user.get("monthly_demo_affordability", 0)
-                                      ))
+                                      )
+#I will write another function to determine whether of not the credit score should be scaled
+scaled_credit_score_user=(credit_score_user*scaled_credit)/(credit_score_user+scaled_credit)
 
 print(f"User Credit Score: {credit_score_user:,} creds")
 print(f"User Scaled Credit Score: {scaled_credit_score_user:,} creds")
