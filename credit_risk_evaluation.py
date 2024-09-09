@@ -173,7 +173,6 @@ def calculate_credit_score(user):
                 (weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
             return credit_score
 
-
 def approve_loan(credit_score):
     max_loan_amount=500000
     min_loan_amount=50000
