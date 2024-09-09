@@ -1,0 +1,27 @@
+Region,Instability_Score
+Dar es Salaam,0.3
+Zanzibar,0.4
+Arusha,0.2
+Mwanza,0.25
+Kigoma,0.6
+Mtwara,0.35
+Dodoma,0.15
+Mbeya,0.3
+Tanga,0.25
+Kagera,0.5
+Iringa,0.2
+Kilimanjaro,0.1
+Lindi,0.4
+Mara,0.45
+Morogoro,0.2
+Pwani,0.3
+Rukwa,0.35
+Ruvuma,0.3
+Shinyanga,0.4
+Singida,0.25
+Tabora,0.3
+Geita,0.35
+Katavi,0.4
+Njombe,0.2
+Simiyu,0.35
+Songwe,0.3

@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np 
 import scalability
 from scalability import ScaledPaymentHistory
+import normalization
 
 #Overall Function Weights
 weight_CreditUtilization=0.2
@@ -21,31 +22,14 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
          cred+=0
         #weight for total amount in debt=30%,remaining=50%
     weight_amount_in_debt = 0.3
-    debt_ranges = [(0, 50000), (50000, 100000), (100000, 150000),(150000,200000),(200000,250000),(250000,300000),(300000,350000),(350000,400000),(400000,450000),(450000,500000)]
-    weights_debt_amount = [1, 0.9, 0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1]
-
-    for start, end in debt_ranges:
-        if start <= total_amount_in_debt < end:
-            cred += weights_debt_amount[debt_ranges.index((start, end))] * weight_amount_in_debt
-            return cred
+    cred+=normalization.normalize_debt(debt=total_amount_in_debt)*weight_amount_in_debt
     #weight for customer payment method=25%,remaining=25%
     weight_payment=0.25
-    if(customer_payment_method=="cash"):
-        cred+=0.5*weight_payment
-    elif(customer_payment_method=="mobile money" or customer_payment_method=="bank payment"):
-            cred+=0.2*weight_payment
-    elif(customer_payment_method=="loan"):
-            cred+=0.1*weight_payment
-    else:cred+=0
+    cred+=normalization.normalize_payment_methods(C7=customer_payment_method)*weight_payment
 
     #last 25%for housing issues and situations
-    weight_housing=0.25*0.3#It takes up 30% of the 25%
-    dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float('inf'))]
-    weights_housing_amount=[1,5/6,2/3,1/2,1/3,1/6]
-    for start,end in dependant_ranges:
-        if start<=housing_situation<end:
-            cred+=weights_housing_amount[dependant_ranges.inded((start,end))]*weight_housing
-            return cred
+    weight_housing=0.75*0.3#It takes up 75% of the 25%
+    cred+=normalization.normalize_dependants(dependants=housing_situation)*weight_housing
         
     weight_ownership=0.25*0.25  #Takes up 25% of the 25%
     if(own_vs_rent=="own"):
@@ -54,48 +38,25 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,customer_payment_m
             cred+=0.3*weight_ownership
     else:cred+=0
 
-    #takes 45% of the 25%
-    weight_emergency=0.45*0.25
-    if(emergency_handling=="dip into savings"):
-            cred+=weight_emergency
-    elif(emergency_handling=="loan more"):
-            cred=+0.5*weight_emergency
-    else:cred+=0
-    return cred
     return cred
 
 def MaturityIndex(age,years_in_business):
     cred=0
-    weights = [0.2, 0.4,0.6, 0.8, 1.0]
     #years in business has a weight of 60% here
     weight_years_in_business = 0.6
-    years_in_business_ranges = [(0, 2), (3, 5), (6, 8), (9,11),(12, float('inf'))]
-    
+    cred+=normalization.normalize_business_duration(C6=years_in_business)*weight_years_in_business
 
-    for start, end in years_in_business_ranges:
-        if start <= years_in_business < end:
-            cred += weights[years_in_business_ranges.index((start, end))] * weight_years_in_business
-            break
     #age has a weight of 40%
     weight_age=0.4
-    age_ranges=[(18,24),(25,40),(41,50),(51,60),(61,65)]
-    for start,end in age_ranges:
-        if start<=age<end:
-            cred+=weights[age_ranges.index((start,end))]*weight_age
-            break
+    cred+=normalization.normalize_age(B3=age)*weight_age
     return cred
 
 def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,loan_term,household_region):
     cred=0
     #Starting with 20% for monthly demonstrated affordability
     weight_monthly_affordability=0.2
-    if(monthly_demo_affordability<=0):
-            cred+=0
-    affordability_ratios=[1/8,1/4,3/8,1/2,5/8,3/4,7/8,1]
-    for ratio in affordability_ratios:
-        if(monthly_demo_affordability<=ratio*total_amount_in_debt):
-            cred+=ratio*weight_monthly_affordability
-            break
+    cred+=normalization.normalize_affordability(monthly_demo_affordability=monthly_demo_affordability,
+                                                total_amount_in_debt=total_amount_in_debt)*weight_monthly_affordability
     
 
     #Number of overdue installments has a 25% weight here
@@ -137,15 +98,8 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
             break
     
     #Regional GDP has a weight of 20%
-    rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
-    for region in rgp['Region']:
-        if(household_region==region):
-             index_find=rgp[rgp['Region'].astype(str).str.lower() == household_region.str.lower()]
-             index=index_find.index[0]
-             cred+=rgp.loc[index, 'Normalized GDP']
-             return cred
-             break
-        else:cred+=0
+    weight_rgp=0.2
+    cred+=normalization.normalize_rgp(B5=household_region)*weight_rgp
 
     return cred
 
