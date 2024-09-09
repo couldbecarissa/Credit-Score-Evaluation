@@ -4,6 +4,7 @@ import numpy as np
 import scalability
 from scalability import ScaledPaymentHistory
 import normalization
+import dead_cases
 
 #Overall Function Weights
 weight_CreditUtilization=0.2
@@ -193,30 +194,10 @@ def approve_loan(credit_score):
     else: loan=credit_score*max_loan_amount
     return loan
 
-
-# Sample users
-user={
-        "financial_literacy":"yes",
-        "total_amount_in_debt":49750,
-        "customer_payment_method":"cash",
-        "housing_situation":3,
-        "own_vs_rent":"own",
-        "emergency_handling":"dip into savings",
-        "age":32,
-        "years_in_business":8,
-        "monthly_demo_affordability":70000,
-        "num_overdue_installments":2,
-        "num_credit_inquiries":6,
-        "max_past_due_amount":60000,
-        "max_past_due_days":100,
-        "loan_term":"a week",
-       " num_credit_accounts":3,
-        "total_open_contracts" :4, 
-        "loan_interest_rate":10,
-        "household_region":"morogoro" 
-    }
-
-credit_score_user=calculate_credit_score(
+def should_calculate(user):
+    calculate=dead_cases.is_dead(user=user)
+    if calculate==True:
+        credit_score_user=calculate_credit_score(
             financial_literacy = user.get("financial_literacy", "unknown"),
             total_amount_in_debt = user.get("total_amount_in_debt", 0),
             customer_payment_method = user.get("customer_payment_method", "unknown"),
@@ -236,16 +217,5 @@ credit_score_user=calculate_credit_score(
             loan_interest_rate=user.get("loan_interest_rate",0),
             household_region=user.get("household_region",0)
             )
-#I will write another function to determine whether of not the credit score should be scaled
-scaled_credit_score_user=credit_score_user-(1-ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
-                                      max_past_due_amount=user.get("max_past_due_amount", 0),
-                                      total_amount_in_debt=user.get("total_amount_in_debt", 0),
-                                      num_overdue_installments= user.get("num_credit_inquiries", 0),
-                                      monthly_demo_affordability=user.get("monthly_demo_affordability", 0)
-                                      ))
-
-print(f"User Credit Score: {credit_score_user:,} creds")
-print(f"User Scaled Credit Score: {scaled_credit_score_user:,} creds")
-
-loan_given=approve_loan(credit_score=credit_score_user)
-print(loan_given)
+        return credit_score_user
+    else: raise ValueError("You are not eligible for a loan")

@@ -38,22 +38,22 @@ def normalize_age(B3):
     }
     return age_scores.get(B3, 0.00)
 
-def normalize_revenue(daily, weekly, monthly, quarterly, annual):
+def normalize_revenue(D6, D7, D8, D9, D10):
     """
     Normalize revenue (D6 to D10) to a 0-1 scale using percentiles.
     """
     # Convert all revenues to monthly
     monthly_revenue = max(
-        daily * 30,
-        weekly * 4,
-        monthly,
-        quarterly / 3,
-        annual / 12
+        D6 * 30,
+        D7 * 4,
+        D8,
+        D9 / 3,
+        D10 / 12
     )
     
     # Define percentile thresholds (these should be calculated from your dataset)
-    percentiles = [0, 1000, 2000, 5000, 10000, float('inf')]
-    scores = [0.20, 0.40, 0.60, 0.80, 1.00]
+    percentiles = [0, 50000, 100000,200000, 500000, 700000, float('inf')]
+    scores = [1/6,1/3,1/2,2/3,5/6,1]
     
     for i, threshold in enumerate(percentiles[1:]):
         if monthly_revenue <= threshold:
@@ -87,7 +87,7 @@ def normalize_categorical(category, category_order):
     return category_order.index(category) / (len(category_order) - 1)
 
 def normalize_dependants(dependants):
-    dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float('inf'))]
+    dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float64('inf'))]
     weights_housing_amount=[1,5/6,2/3,1/2,1/3,1/6]
     for start,end in dependant_ranges:
         if start<=dependants<end:
@@ -123,7 +123,12 @@ def normalize_rgp(B5):
         else:return 0
  #POLITICAL INSTABILITY
 
-def is_collateral(collateral):
-    if collateral is not None:
+def is_EMPTY(field):
+    if field is not None:
         return True
     else:return False
+
+def debt_to_income(total_amount_in_debt,revenue):
+    total_amount_in_debt=total_amount_in_debt/12
+    d2i=min(max(total_amount_in_debt/revenue, 0), 1) if revenue!=0 else 0
+    return d2i
