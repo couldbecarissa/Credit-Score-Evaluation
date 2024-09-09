@@ -42,4 +42,12 @@ def ScaledPaymentHistory(max_past_due_days,max_past_due_amount,total_amount_in_d
 
     return cred
     
+def scaled(user):
+    scaled_cred=ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
+                                      max_past_due_amount=user.get("max_past_due_amount", 0),
+                                      total_amount_in_debt=user.get("total_amount_in_debt", 0),
+                                      num_overdue_installments= user.get("num_credit_inquiries", 0),
+                                      monthly_demo_affordability=user.get("monthly_demo_affordability", 0)
+                                      )
+    return scaled_cred
     

@@ -17,9 +17,9 @@ def normalize_payment_methods(C7):
     """
     Normalize payment methods (C7) to a 0-1 scale.
     """
-    if 'cash' in C7 and len(C7) == 1:
+    if 'cash' in C7 :
         return 0.33
-    elif 'cash' in C7 and 'mobile money' in C7 and len(C7) == 2:
+    elif 'cash' in C7 and 'mobile money' in C7 :
         return 0.67
     elif 'cash' in C7 and 'mobile money' in C7 and 'bank' in C7:
         return 1.00

@@ -4,7 +4,7 @@ import scalability
 import dead_cases
 
 # Sample users
-user={
+user1={
         "financial_literacy":"yes",
         "total_amount_in_debt":49750,
         "customer_payment_method":"cash",
@@ -25,13 +25,8 @@ user={
         "household_region":"morogoro" 
     }
 
-credit_score_user=credit_risk_evaluation.should_calculate(user=user)
-scaled_credit=scalability.ScaledPaymentHistory(max_past_due_days=user.get("max_past_due_days", 0),
-                                      max_past_due_amount=user.get("max_past_due_amount", 0),
-                                      total_amount_in_debt=user.get("total_amount_in_debt", 0),
-                                      num_overdue_installments= user.get("num_credit_inquiries", 0),
-                                      monthly_demo_affordability=user.get("monthly_demo_affordability", 0)
-                                      )
+credit_score_user=credit_risk_evaluation.should_calculate(user=user1)
+scaled_credit=scalability.scaled(user1)
 #I will write another function to determine whether of not the credit score should be scaled
 scaled_credit_score_user=(credit_score_user*scaled_credit)/(credit_score_user+scaled_credit)
 

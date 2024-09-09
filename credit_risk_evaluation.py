@@ -148,34 +148,25 @@ def LoanTerm(loan_term,loan_interest_rate):
 """
 Results from the above functions are in the range (0,1)
 """
-def calculate_credit_score(financial_literacy,
-                           total_amount_in_debt,
-                           C7,
-                           B15,
-                           C3,
-                           age,C6,
-                           monthly_demo_affordability,
-                           num_overdue_installments,num_credit_inquiries,
-                           max_past_due_amount,max_past_due_days,
-                           loan_term,
-                           num_credit_accounts,total_open_contracts,loan_interest_rate,B5 
-):
-            credit_util=CreditUtilization(financial_literacy=financial_literacy,
-                                          total_amount_in_debt=total_amount_in_debt,
-                                          C7=C7,
-                                          B15=B15,
-                                          C3=C3)
-            maturity_index=MaturityIndex(age=age,C6=C6)
-            payment_history=PaymentHistory(monthly_demo_affordability=monthly_demo_affordability,
-                                           num_credit_inquiries=num_credit_inquiries,
-                                           num_overdue_installments=num_overdue_installments,
-                                           max_past_due_amount=max_past_due_amount,
-                                           max_past_due_days=max_past_due_days,
-                                           B5=B5,
-                                           total_amount_in_debt=total_amount_in_debt)
-            credit_accounts=CreditAccounts(num_credit_accounts=num_credit_accounts,
-                                           total_open_contracts=total_open_contracts)
-            loan_terms=LoanTerm(loan_term=loan_term,loan_interest_rate=loan_interest_rate)
+def calculate_credit_score(user):
+            credit_util=CreditUtilization(financial_literacy=user.get("financial_literacy","unknown"),
+                                          total_amount_in_debt=user.get("total_amount_in_debt",0),
+                                          C7=user.get("C7", "unknown"),
+                                          B15=user.get("B15", 0),
+                                          C3=user.get("C3", 0))
+            maturity_index=MaturityIndex(age=user.get("age", 0),
+                                         C6=user.get("C6", 0),)
+            payment_history=PaymentHistory(monthly_demo_affordability=user.get("monthly_demo_affordability", 0),
+                                           num_credit_inquiries=user.get("num_credit_inquiries", 0),
+                                           num_overdue_installments=user.get("num_overdue_installments", 0),
+                                           max_past_due_amount=user.get("max_past_due_amount", 0),
+                                           max_past_due_days=user.get("max_past_due_days", 0),
+                                           B5=user.get("B5", 0),
+                                           total_amount_in_debt=user.get("total_amount_in_debt", 0),)
+            credit_accounts=CreditAccounts(num_credit_accounts=user.get("num_credit_accounts", 0),
+                                           total_open_contracts=user.get("total_open_contracts", 0))
+            loan_terms=LoanTerm(loan_term=user.get("loan_term","unknown"),
+                                loan_interest_rate=5)
 
             credit_score=(weight_CreditAccounts*credit_accounts)+\
             (weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+\
@@ -195,24 +186,6 @@ def approve_loan(credit_score):
 def should_calculate(user):
     calculate=dead_cases.is_dead(user=user)
     if calculate==True:
-        credit_score_user=calculate_credit_score(
-            financial_literacy = user.get("financial_literacy", "unknown"),
-            total_amount_in_debt = user.get("total_amount_in_debt", 0),
-            C7= user.get("C7", "unknown"),
-            B15=user.get("B15", 0),
-            C3=user.get("C3", "unknown"),
-            age = user.get("age", 0),
-            C6= user.get("C6", 0),
-            monthly_demo_affordability = user.get("monthly_demo_affordability", 0),
-            num_overdue_installments = user.get("num_overdue_installments", 0),
-            num_credit_inquiries = user.get("num_credit_inquiries", 0),
-            max_past_due_amount = user.get("max_past_due_amount", 0),
-            max_past_due_days = user.get("max_past_due_days", 0),
-            loan_term = user.get("loan_term", "unknown"),
-            num_credit_accounts = user.get("num_credit_accounts", 0),
-            total_open_contracts = user.get("total_open_contracts", 0),
-            loan_interest_rate=user.get("loan_interest_rate",0),
-            B5=user.get("B5",0)
-            )
+        credit_score_user=calculate_credit_score(user=user)
         return credit_score_user
     else: raise ValueError("You are not eligible for a loan")
