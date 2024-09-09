@@ -122,3 +122,8 @@ def normalize_rgp(B5):
             
         else:return 0
  #POLITICAL INSTABILITY
+
+def is_collateral(collateral):
+    if collateral is not None:
+        return True
+    else:return False
