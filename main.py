@@ -26,7 +26,7 @@ user1={
     }
 
 credit_score_user=credit_risk_evaluation.should_calculate(user=user1)
-scaled_credit=scalability.scaled(user1)
+scaled_credit=scalability.scaled(user=user1)
 #I will write another function to determine whether of not the credit score should be scaled
 scaled_credit_score_user=(credit_score_user*scaled_credit)/(credit_score_user+scaled_credit)
 
