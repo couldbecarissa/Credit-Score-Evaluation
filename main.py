@@ -18,7 +18,6 @@ user1={
         "max_past_due_days":100,
        " num_credit_accounts":7,
         "total_open_contracts" :4, 
-        "loan_interest_rate":10,
         "B5":"Morogoro" ,
         "loan_term":9
     }
