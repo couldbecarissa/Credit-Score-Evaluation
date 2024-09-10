@@ -26,16 +26,16 @@ def normalize_payment_methods(C7):
         return 0.00  
 
 def normalize_age(B3):
-    """
-    Normalize age category (B3) to a 0-1 scale.
-    """
     age_scores = {
-        '18-24': 0.25,
-        '25-34': 0.50,
-        '35-44': 0.75,
-        '45+': 1.00
-    }
-    return age_scores.get(B3, 0.00)
+        (18,24): 0.25,
+        (25,34): 0.50,
+        (35,44): 0.75,
+        (45,np.float64('inf')): 1.00}
+    
+    for (lower, upper), score in age_scores.items():
+        if lower <= B3 <= upper:
+            return score
+    return score
 
 def normalize_revenue(D6, D7, D8, D9, D10):
     """
