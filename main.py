@@ -5,7 +5,7 @@ import dead_cases
 # Sample users
 user1={
         "financial_literacy":"yes",
-        "total_amount_in_debt":497050,
+        "total_amount_in_debt":49050,
         "C7":"cash",
         "B15":3,
         "C3":"rent",
