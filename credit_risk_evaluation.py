@@ -1,8 +1,6 @@
 #Load the librarys
 import pandas as pd 
 import numpy as np 
-import scalability
-from scalability import ScaledPaymentHistory
 import normalization
 import dead_cases
 

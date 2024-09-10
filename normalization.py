@@ -76,11 +76,11 @@ def normalize_debt(debt):
         else: return 0
 
 def normalize_affordability(monthly_demo_affordability,total_amount_in_debt):
-    affordability_ratios=[0,1/8,1/4,3/8,1/2,5/8,3/4,7/8,1]
-    for ratio in affordability_ratios:
-        if(monthly_demo_affordability<=ratio*total_amount_in_debt):
-            return ratio
-        else: return 0
+    ratio=monthly_demo_affordability/total_amount_in_debt
+    if ratio>1:
+        ratio=1
+    elif ratio<0:
+        ratio=0
     return ratio
 
 def normalize_rgp(B5):
