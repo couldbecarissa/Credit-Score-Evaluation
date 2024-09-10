@@ -20,7 +20,7 @@ user1={
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
         "loan_interest_rate":10,
-        "B5":"morogoro" ,
+        "B5":"Morogoro" ,
         "loan_term":9
     }
 

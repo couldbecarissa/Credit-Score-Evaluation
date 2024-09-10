@@ -86,10 +86,9 @@ def normalize_affordability(monthly_demo_affordability,total_amount_in_debt):
 def normalize_rgp(B5):
     rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
     for region in rgp['Region']:
-        if(B5==region.lower()):
-             index_find=rgp[rgp['Region'].astype(str).str.lower() == B5.str.lower()]
-             index=index_find.index[0]
-             result=rgp.loc[index, 'Normalized GDP']
+        if(B5==region):
+             index=rgp[rgp['Region'].astype(str).lower() == B5.str.lower()].index[0]
+             result=rgp.at[index, 'Normalized GDP']
         else:result=0
     return result
  #POLITICAL INSTABILITY
