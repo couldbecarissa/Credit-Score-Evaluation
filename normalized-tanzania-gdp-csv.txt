@@ -1,24 +1,24 @@
 Region,GDP per capita (TZS),Normalized GDP
 Dar es Salaam,4348990,1.0000
-Mbeya Region,3506101,0.7192
-Iringa Region,3360551,0.6718
-Njombe Region,3317698,0.6566
-Ruvuma Region,3112316,0.5875
-Kilimanjaro Region,3074583,0.5752
-Arusha Region,3034353,0.5623
-Lindi Region,2604254,0.4181
-Tanga Region,2591074,0.4141
-Mwanza Region,2510138,0.3868
-Manyara Region,2483070,0.3779
-Mtwara Region,2471341,0.3742
-Morogoro Region,2392177,0.3474
-Rukwa Region,2325640,0.3251
-Mara Region,2137826,0.2623
-Pwani Region,1993403,0.2141
-Songwe Region,1969023,0.2060
-Shinyanga Region,1861770,0.1701
-Tabora Region,1667808,0.1052
-Dodoma Region,1520720,0.0560
-Singida Region,1500190,0.0491
-Kigoma Region,1384819,0.0106
-Kagera Region,1353277,0.0000
+Mbeya ,3506101,0.7192
+Iringa ,3360551,0.6718
+Njombe ,3317698,0.6566
+Ruvuma ,3112316,0.5875
+Kilimanjaro ,3074583,0.5752
+Arusha ,3034353,0.5623
+Lindi ,2604254,0.4181
+Tanga ,2591074,0.4141
+Mwanza ,2510138,0.3868
+Manyara ,2483070,0.3779
+Mtwara ,2471341,0.3742
+Morogoro ,2392177,0.3474
+Rukwa ,2325640,0.3251
+Mara ,2137826,0.2623
+Pwani ,1993403,0.2141
+Songwe ,1969023,0.2060
+Shinyanga ,1861770,0.1701
+Tabora ,1667808,0.1052
+Dodoma ,1520720,0.0560
+Singida,1500190,0.0491
+Kigoma ,1384819,0.0106
+Kagera ,1353277,0.0000

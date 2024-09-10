@@ -6,12 +6,11 @@ import dead_cases
 user1={
         "financial_literacy":"yes",
         "total_amount_in_debt":49750,
-        "customer_payment_method":"cash",
-        "housing_situation":3,
-        "own_vs_rent":"own",
-        "emergency_handling":"dip into savings",
+        "C7":"cash",
+        "B15":3,
+        "C3":"rent",
         "age":32,
-        "years_in_business":8,
+        "C6":8,
         "monthly_demo_affordability":70000,
         "num_overdue_installments":2,
         "num_credit_inquiries":6,
@@ -21,7 +20,7 @@ user1={
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
         "loan_interest_rate":10,
-        "household_region":"morogoro" ,
+        "B5":"morogoro" ,
         "loan_term":9
     }
 
