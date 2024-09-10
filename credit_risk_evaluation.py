@@ -30,7 +30,7 @@ def CreditUtilization(financial_literacy,total_amount_in_debt,C7,B15,C3):
     cred+=normalization.normalize_payment_methods(C7=C7)*weight_payment
 
     #last 25%for housing issues and situations
-    weight_housing=0.75*0.3#It takes up 75% of the 25%
+    weight_housing=0.75*0.25#It takes up 75% of the 25%
     cred+=normalization.normalize_dependants(dependants=B15)*weight_housing
         
     weight_ownership=0.25*0.25  #Takes up 25% of the 25%
@@ -63,23 +63,11 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
 
     #Number of overdue installments has a 25% weight here
     weight_overdue_installments = 0.25
-    overdue_ranges = [(0, 2), (3, 5), (5, float('inf'))]
-    weights = [1, 0.6, 0.3]
-
-    for start, end in overdue_ranges:
-        if start <= num_overdue_installments < end:
-            cred += weights[overdue_ranges.index((start, end))] * weight_overdue_installments
-            break
+    cred+=weight_overdue_installments*normalization.normalize_overdue_installments(num_overdue_installments=num_overdue_installments)
 
     #Number of credit enquiries is at 15% weight here
     weight_credit_inquiries=0.15
-    credit_inquiry_ranges = [(0, 1), (1, 4), (4, 6)]
-    weights = [1, 1/3, 2/3]
-
-    for start, end in credit_inquiry_ranges:
-        if start <= num_credit_inquiries < end:
-            cred += weights[credit_inquiry_ranges.index((start, end))] * weight_credit_inquiries
-            break
+    cred+=weight_credit_inquiries*normalization.normalize_credit_inquiries(num_credit_inquiries=num_credit_inquiries)
 
     #Highest past due amount has a 10% weight here
     weight_past_due_amount=0.1

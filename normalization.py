@@ -132,3 +132,23 @@ def debt_to_income(total_amount_in_debt,revenue):
     total_amount_in_debt=total_amount_in_debt/12
     d2i=min(max(total_amount_in_debt/revenue, 0), 1) if revenue!=0 else 0
     return d2i
+
+def normalize_overdue_installments(num_overdue_installments):
+    overdue_ranges = [(0, 2), (3, 5),(5,7),(7,9),(9,11),(11,13),(13,15),(15, float('inf'))]
+    weights = [1,(7/8),0.75,(5/8),0.5,(3/8),0.25,(1/8)]
+
+    for start, end in overdue_ranges:
+        if start <= num_overdue_installments < end:
+            weight = weights[overdue_ranges.index((start, end))]
+            break
+    return weight
+
+def normalize_credit_inquiries(num_credit_inquiries):
+    credit_inquiry_ranges = [(0, 1), (1, 3), (3, 6),(6,9),(9,12),(12,15),(15,np.float64('inf'))]
+    weights = [1,(6/7),(5/7),(4/7),(3/7),(2/7),(1/7),0]
+
+    for start, end in credit_inquiry_ranges:
+        if start <= num_credit_inquiries < end:
+            weight= weights[credit_inquiry_ranges.index((start, end))]
+            break
+    return weight
