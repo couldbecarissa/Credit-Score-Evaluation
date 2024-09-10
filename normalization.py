@@ -110,9 +110,9 @@ def normalize_overdue_installments(num_overdue_installments):
 
     for start, end in overdue_ranges:
         if start <= num_overdue_installments < end:
-            weight = weights[overdue_ranges.index((start, end))]
-            break
-    return weight
+            wt = weights[overdue_ranges.index((start, end))]
+        else:wt=0
+    return wt
 
 def normalize_credit_inquiries(num_credit_inquiries):
     credit_inquiry_ranges = [(0, 1), (1, 3), (3, 6),(6,9),(9,12),(12,15),(15,np.float64('inf'))]

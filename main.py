@@ -21,7 +21,8 @@ user1={
        " num_credit_accounts":3,
         "total_open_contracts" :4, 
         "loan_interest_rate":10,
-        "household_region":"morogoro" 
+        "household_region":"morogoro" ,
+        "loan_term":9
     }
 
 credit_score_user=credit_risk_evaluation.should_calculate(user=user1)

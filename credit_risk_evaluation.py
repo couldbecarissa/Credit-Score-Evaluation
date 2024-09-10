@@ -118,7 +118,8 @@ def LoanTerm(loan_term):
         cred+=0.7*weight_payback_period
     elif(loan_term==30):
         cred+=weight_payback_period
-        return cred
+    
+    return cred
 
 
 """
@@ -141,7 +142,7 @@ def calculate_credit_score(user):
                                            total_amount_in_debt=user.get("total_amount_in_debt", 0),)
             credit_accounts=CreditAccounts(num_credit_accounts=user.get("num_credit_accounts", 0),
                                            total_open_contracts=user.get("total_open_contracts", 0))
-            loan_terms=LoanTerm(loan_term=user.get("loan_term","unknown"))
+            loan_terms=LoanTerm(loan_term=user.get("loan_term",7))
 
             credit_score=(weight_CreditAccounts*credit_accounts)+\
             (weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+\
