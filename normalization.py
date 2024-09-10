@@ -38,9 +38,6 @@ def normalize_age(B3):
     return score
 
 def normalize_revenue(D6, D7, D8, D9, D10):
-    """
-    Normalize revenue (D6 to D10) to a 0-1 scale using percentiles.
-    """
     # Convert all revenues to monthly
     monthly_revenue = max(
         D6 * 30,
@@ -52,20 +49,14 @@ def normalize_revenue(D6, D7, D8, D9, D10):
     
     # Define percentile thresholds (these should be calculated from your dataset)
     percentiles = [0, 50000, 100000,200000, 500000, 700000, float('inf')]
-    scores = [1/6,1/3,1/2,2/3,5/6,1]
+    scores = [(1/8),0.25,(3/8),0.5,(5/8),0.75,(7/8),1]
     
     for i, threshold in enumerate(percentiles[1:]):
         if monthly_revenue <= threshold:
-            return scores[i]
+             wt=scores[i]
+        else:wt=0
     
-    return 1.00  # Default to highest score if above all thresholds
-
-def normalize_ppi_score(ppi_score):
-    """
-    Normalize PPI score to a 0-1 scale, inverting so lower poverty likelihood
-    results in a higher credit score.
-    """
-    return (100 - ppi_score) / 100
+    return wt # Default to highest score if above all thresholds
 
 def normalize_dependants(dependants):
     dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float64('inf'))]
