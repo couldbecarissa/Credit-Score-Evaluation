@@ -2,9 +2,6 @@ import numpy as np
 import pandas as pd
 
 def normalize_business_duration(C6):
-    """
-    Normalize business duration (C6) to a 0-1 scale.
-    """
     weights = [0.2, 0.4,0.6, 0.8, 1.0]
     business_duration_ranges = [(0, 2), (3, 5), (6, 8), (9,11),(12, float('inf'))]
     for start, end in business_duration_ranges:
@@ -12,19 +9,21 @@ def normalize_business_duration(C6):
             return weights[business_duration_ranges.index((start, end))]     
         else: return 0  
 
-
 def normalize_payment_methods(C7):
-    """
-    Normalize payment methods (C7) to a 0-1 scale.
-    """
     if 'cash' in C7 :
         return 0.33
     elif 'cash' in C7 and 'mobile money' in C7 :
         return 0.67
+    elif 'mobile money' in C7 or 'cash' in C7 and 'bank' in C7:
+        return 0.5
+    elif 'bank' in C7:
+        return 0.7
+    elif 'mobile money' in C7 and 'bank' in C7:
+        return 0.9
     elif 'cash' in C7 and 'mobile money' in C7 and 'bank' in C7:
         return 1.00
     else:
-        return 0.00  # Default case for unexpected combinations
+        return 0.00  
 
 def normalize_age(B3):
     """
@@ -67,24 +66,6 @@ def normalize_ppi_score(ppi_score):
     results in a higher credit score.
     """
     return (100 - ppi_score) / 100
-
-def min_max_normalize(value, min_val, max_val):
-    """
-    Perform min-max normalization on a single value.
-    """
-    return (value - min_val) / (max_val - min_val)
-
-def z_score_normalize(value, mean, std_dev):
-    """
-    Perform z-score normalization on a single value.
-    """
-    return (value - mean) / std_dev
-
-def normalize_categorical(category, category_order):
-    """
-    Normalize a categorical variable based on a predefined order.
-    """
-    return category_order.index(category) / (len(category_order) - 1)
 
 def normalize_dependants(dependants):
     dependant_ranges=[(0,2),(2,4),(4,6),(6,8),(8,10),(10,np.float64('inf'))]

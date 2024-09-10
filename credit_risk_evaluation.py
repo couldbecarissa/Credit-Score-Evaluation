@@ -112,8 +112,8 @@ def CreditAccounts(num_credit_accounts,total_open_contracts):
 
 def LoanTerm(loan_term):
     cred=0
-    #here the period for payment has the weight of 70%
-    weight_payback_period=0.7
+    #here the period for payment has the weight of 100%
+    weight_payback_period=1
     if(loan_term==7):
         cred+=0.5*weight_payback_period
     elif(loan_term==15):
