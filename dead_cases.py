@@ -58,8 +58,10 @@ def is_dead(user):
     # Normalize risk score to ensure it's between 0 and 1
     norm= min(max(risk_score, 0), 1)
     if(norm<0.5):
-        return True
-    else:return False
+        result=True
+    else: result=False
+    
+    return result
 
 
 

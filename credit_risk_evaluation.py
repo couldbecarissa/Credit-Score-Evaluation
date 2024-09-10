@@ -110,28 +110,18 @@ def CreditAccounts(num_credit_accounts,total_open_contracts):
         else:cred+=0
     return cred
 
-def LoanTerm(loan_term,loan_interest_rate):
+def LoanTerm(loan_term):
     cred=0
     #here the period for payment has the weight of 70%
     weight_payback_period=0.7
-    if(loan_term=="one week"):
+    if(loan_term==7):
         cred+=0.5*weight_payback_period
-    elif(loan_term=="two weeks"):
+    elif(loan_term==15):
         cred+=0.7*weight_payback_period
-    elif(loan_term=="a month"):
+    elif(loan_term==30):
         cred+=weight_payback_period
         return cred
 
-    #interest rate has a weight of 30%
-    weight_loan_interest = 0.3
-    interest_rate_ranges = [(0, 5), (5, 10), (10, 15), (15, 20)]
-    weights = [1, 0.5, 0.2, 0.1]
-
-    for start, end in interest_rate_ranges:
-        if start <= loan_interest_rate < end:
-            cred += weights[interest_rate_ranges.index((start, end))] * weight_loan_interest
-        break
-    return cred
 
 """
 Results from the above functions are in the range (0,1)
@@ -153,8 +143,7 @@ def calculate_credit_score(user):
                                            total_amount_in_debt=user.get("total_amount_in_debt", 0),)
             credit_accounts=CreditAccounts(num_credit_accounts=user.get("num_credit_accounts", 0),
                                            total_open_contracts=user.get("total_open_contracts", 0))
-            loan_terms=LoanTerm(loan_term=user.get("loan_term","unknown"),
-                                loan_interest_rate=5)
+            loan_terms=LoanTerm(loan_term=user.get("loan_term","unknown"))
 
             credit_score=(weight_CreditAccounts*credit_accounts)+\
             (weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+\
