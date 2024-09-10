@@ -152,7 +152,7 @@ def calculate_credit_score(user):
 def approve_loan(credit_score):
     max_loan_amount=500000
     min_loan_amount=50000
-    min_credit_score=(min_loan_amount/max_loan_amount)-0.01
+    min_credit_score=0.3
     if(credit_score<min_credit_score):
         print("Sorry,you do not qualify for a loan.")
     else: loan=credit_score*max_loan_amount

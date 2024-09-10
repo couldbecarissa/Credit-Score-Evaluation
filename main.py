@@ -5,7 +5,7 @@ import dead_cases
 # Sample users
 user1={
         "financial_literacy":"yes",
-        "total_amount_in_debt":49750,
+        "total_amount_in_debt":497050,
         "C7":"cash",
         "B15":3,
         "C3":"rent",
@@ -15,9 +15,9 @@ user1={
         "num_overdue_installments":2,
         "num_credit_inquiries":6,
         "max_past_due_amount":60000,
-        "max_past_due_days":100,
+        "max_past_due_days":1,
        " num_credit_accounts":7,
-        "total_open_contracts" :4, 
+        "total_open_contracts" :8, 
         "B5":"Morogoro" ,
         "loan_term":9
     }
