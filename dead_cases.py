@@ -42,7 +42,7 @@ def is_dead(user):
                                                                      D7=user.get("D7",0),
                                                                      D9=user.get("D9",0),
                                                                      D10=user.get("D10",0)),
-        'lack_collateral': 0.1 if normalization.is_EMPTY==True else 0,
+        'lack_collateral': 0.1 if normalization.is_EMPTY(user.get("collateral",None))==True else 0,
         'high_risk_location': 0.05*normalization.normalize_rgp(B5=user.get("B5",0)),
         'inadequate_management_experience': 0.1*MaturityIndex(age=user.get("age",0),years_in_business=user.get("C6",0)),
     }
