@@ -1,5 +1,5 @@
 import numpy as np
-import normalization
+import main.normalization as normalization
 
 def MaturityIndex(age,years_in_business):
     cred=0

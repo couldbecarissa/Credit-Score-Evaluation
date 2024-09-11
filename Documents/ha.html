@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Calculator with SQLite</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-md mx-auto bg-white p-5 rounded shadow-lg">
+        <h1 class="text-2xl font-bold mb-4 text-center">Credit Score Calculator</h1>
+        <form id="creditScoreForm" class="space-y-4">
+            <div>
+                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                <input type="number" id="age" name="age" class="mt-1 p-2 w-full border rounded" required>
+            </div>
+            <div>
+                <label for="business_duration" class="block text-sm font-medium text-gray-700">Business Duration (Years)</label>
+                <input type="number" id="business_duration" name="business_duration" class="mt-1 p-2 w-full border rounded" required>
+            </div>
+            <div>
+                <label for="revenue" class="block text-sm font-medium text-gray-700">Monthly Revenue</label>
+                <input type="number" id="revenue" name="revenue" class="mt-1 p-2 w-full border rounded" required>
+            </div>
+            <div>
+                <label for="loan_amount" class="block text-sm font-medium text-gray-700">Loan Amount</label>
+                <input type="number" id="loan_amount" name="loan_amount" class="mt-1 p-2 w-full border rounded">
+            </div>
+            <div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Calculate Credit Score</button>
+            </div>
+        </form>
+        <div id="result" class="mt-4 text-center"></div>
+    </div>
+
+    <script>
+        let db;
+
+        // Initialize the SQLite database in memory
+        window.initSqlJs().then(function(SQL) {
+            db = new SQL.Database();
+            // Create a table to store credit score data
+            db.run("CREATE TABLE credit_scores (id INTEGER PRIMARY KEY, age INTEGER, business_duration INTEGER, revenue REAL, loan_amount REAL, credit_score REAL);");
+        });
+
+        document.getElementById('creditScoreForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const age = parseInt(document.getElementById('age').value);
+            const business_duration = parseInt(document.getElementById('business_duration').value);
+            const revenue = parseFloat(document.getElementById('revenue').value);
+            const loan_amount = parseFloat(document.getElementById('loan_amount').value);
+
+            // Calculate the credit score
+            const credit_score = age * 0.2 + business_duration * 0.3 + revenue * 0.4 - loan_amount * 0.1;
+
+            // Insert the data into the SQLite database
+            const stmt = db.prepare("INSERT INTO credit_scores (age, business_duration, revenue, loan_amount, credit_score) VALUES (?, ?, ?, ?, ?)");
+            stmt.run([age, business_duration, revenue, loan_amount, credit_score]);
+            stmt.free();
+
+            // Show the credit score result
+            document.getElementById('result').textContent = `Your Credit Score is: ${credit_score}`;
+        });
+    </script>
+</body>
+</html>
