@@ -154,7 +154,12 @@ def approve_loan(credit_score):
     min_loan_amount=50000
     min_credit_score=0.3
     if credit_score>min_credit_score:
-        loan=(credit_score*max_loan_amount)-(credit_score*min_loan_amount)
+        if credit_score <= 0.5:
+            scaled_score = credit_score**2
+        else:
+            scaled_score = 0.5 + 0.5 * ((credit_score - 0.5) / 0.5) 
+
+        loan = min_loan_amount + (max_loan_amount - min_loan_amount) * scaled_score
     else:loan=0
     return loan
 

@@ -5,21 +5,21 @@ import dead_cases
 # Sample users
 user1={
         "financial_literacy":"yes",
-        "total_amount_in_debt":49050,
+        "total_amount_in_debt":4900,
         "C7":"cash",
         "B15":3,
-        "C3":"rent",
+        "C3":"own",
         "age":32,
         "C6":8,
-        "monthly_demo_affordability":70000,
+        "monthly_demo_affordability":700000,
         "num_overdue_installments":2,
-        "num_credit_inquiries":6,
+        "num_credit_inquiries":2,
         "max_past_due_amount":60000,
         "max_past_due_days":1,
-       " num_credit_accounts":7,
-        "total_open_contracts" :8, 
+       " num_credit_accounts":1,
+        "total_open_contracts" :1, 
         "B5":"Morogoro" ,
-        "loan_term":9
+        "loan_term":30
     }
 
 credit_score_user=credit_risk_evaluation.should_calculate(user=user1)
