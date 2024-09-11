@@ -14,24 +14,24 @@ weight_CreditAccounts=0.15
 #Finding a credit utilization score
 def CreditUtilization(financial_literacy,total_amount_in_debt,C7,B15,C3):
     cred=0
-    #weight for financial literacy=20%,remaining=80%
+    #weight for financial literacy=10%,remaining=90%
     if(financial_literacy=="yes"):
-        cred+=0.2
+        cred+=0.1
     elif financial_literacy=="no":
          cred+=0
-        #weight for total amount in debt=30%,remaining=50%
-    weight_amount_in_debt = 0.3
+        #weight for total amount in debt=60%,remaining=30%
+    weight_amount_in_debt = 0.6
     cred+=normalization.normalize_debt(debt=total_amount_in_debt)*weight_amount_in_debt
 
-    #weight for customer payment method=25%,remaining=25%
-    weight_payment=0.25
+    #weight for customer payment method=15%,remaining=15%
+    weight_payment=0.15
     cred+=normalization.normalize_payment_methods(C7=C7)*weight_payment
 
     #last 25%for housing issues and situations
-    weight_housing=0.75*0.25#It takes up 75% of the 25%
+    weight_housing=0.75*0.15#It takes up 75% of the 15%
     cred+=normalization.normalize_dependants(dependants=B15)*weight_housing
         
-    weight_ownership=0.25*0.25  #Takes up 25% of the 25%
+    weight_ownership=0.25*0.15  #Takes up 25% of the 15%
     if(C3=="own"):
         cred+=weight_ownership
     elif(C3=="rent"):
