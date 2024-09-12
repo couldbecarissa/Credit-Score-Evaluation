@@ -3,11 +3,12 @@ import pandas as pd
 
 def normalize_business_duration(C6):
     weights = [0.2, 0.4,0.6, 0.8, 1.0]
-    business_duration_ranges = [(0, 2), (3, 5), (6, 8), (9,11),(12, float('inf'))]
+    business_duration_ranges = [(0, 3), (3, 5), (5, 8), (8,11),(11, float('inf'))]
     for start, end in business_duration_ranges:
         if start <= C6 < end:
-            return weights[business_duration_ranges.index((start, end))]     
-        else: return 0  
+            weight= weights[business_duration_ranges.index((start, end))]     
+        else: weight=0
+    return weight  
 
 def normalize_payment_methods(C7):
     if 'cash' in C7 :
@@ -106,7 +107,7 @@ def debt_to_income(total_amount_in_debt,revenue):
     return d2i
 
 def normalize_overdue_installments(num_overdue_installments):
-    overdue_ranges = [(0, 2), (3, 5),(5,7),(7,9),(9,11),(11,13),(13,15),(15, float('inf'))]
+    overdue_ranges = [(0, 3), (3, 5),(5,7),(7,9),(9,11),(11,13),(13,15),(15, float('inf'))]
     weights = [1,(7/8),0.75,(5/8),0.5,(3/8),0.25,(1/8)]
 
     for start, end in overdue_ranges:

@@ -44,11 +44,12 @@ def MaturityIndex(age,C6):
     cred=0
     #years in business has a weight of 60% here
     weight_years_in_business = 0.6
-    cred+=normalization.normalize_business_duration(C6=C6)*weight_years_in_business
+    cred+=weight_years_in_business*normalization.normalize_business_duration(C6=C6)
 
     #age has a weight of 40%
     weight_age=0.4
-    cred+=normalization.normalize_age(B3=age)*weight_age
+    cred+=weight_age*normalization.normalize_age(B3=age)
+
     return cred
 
 def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_installments,num_credit_inquiries,max_past_due_amount,max_past_due_days,B5):
@@ -73,7 +74,6 @@ def PaymentHistory(total_amount_in_debt,monthly_demo_affordability,num_overdue_i
         cred+=weight_past_due_amount
     elif(max_past_due_amount>monthly_demo_affordability):
         cred+=0.4*weight_past_due_amount
-    else:cred+=0
 
     #Highest Past Due days has a 10% weight here
     weight_past_due_days = 0.1
@@ -143,7 +143,6 @@ def calculate_credit_score(user):
             credit_accounts=CreditAccounts(num_credit_accounts=user.get("num_credit_accounts", 0),
                                            total_open_contracts=user.get("total_open_contracts", 0))
             loan_terms=LoanTerm(loan_term=user.get("loan_term",7))
-
             credit_score=(weight_CreditAccounts*credit_accounts)+\
             (weight_CreditUtilization*credit_util)+(weight_LoanTerm*loan_terms)+\
                 (weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
