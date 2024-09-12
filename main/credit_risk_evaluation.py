@@ -1,4 +1,4 @@
-import main.normalization as normalization
+import normalization
 
 def calculate_credit_score(user):
     # Define weights for main factors
@@ -147,8 +147,8 @@ def approve_loan(credit_score, requested_amount):
 
 def should_calculate(user):
     monthly_income = user.get("monthly_income", 0)
-    monthly_debt = user.get("monthly_debt", 0)
-    _, is_eligible = normalization.calculate_debt_to_income_ratio(monthly_income, monthly_debt)
+    total_amount_in_debt = user.get("total_amount_in_debt", 0)
+    _, is_eligible = normalization.calculate_debt_to_income_ratio(monthly_income, total_amount_in_debt)
 
     if not is_eligible:
         raise ValueError("You are not eligible for a loan due to a high debt-to-income ratio")

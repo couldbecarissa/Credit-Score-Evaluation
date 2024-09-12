@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Checker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-6 text-center">Loan Eligibility Checker</h2>
+        <form id="loanForm" class="space-y-4">
+            <div>
+                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                <input type="number" id="age" name="age" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="income" class="block text-sm font-medium text-gray-700">Income</label>
+                <input type="number" id="income" name="income" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="payment_history" class="block text-sm font-medium text-gray-700">Payment History</label>
+                <input type="text" id="payment_history" name="payment_history" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="credit_score" class="block text-sm font-medium text-gray-700">Credit Score</label>
+                <input type="number" id="credit_score" name="credit_score" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none">Check Eligibility</button>
+            </div>
+        </form>
+        <div id="result" class="mt-6 text-center text-lg font-semibold"></div>
+    </div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const age = document.getElementById('age').value;
+            const income = document.getElementById('income').value;
+            const paymentHistory = document.getElementById('payment_history').value;
+            const creditScore = document.getElementById('credit_score').value;
+
+            const response = await fetch('/api/check_eligibility', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    age: age,
+                    income: income,
+                    payment_history: paymentHistory,
+                    credit_score: creditScore
+                }),
+            });
+
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+
+            if (result.eligible) {
+                resultDiv.textContent = "🎉 Congratulations! You are eligible for the loan.";
+                resultDiv.classList.add('text-green-600');
+                resultDiv.classList.remove('text-red-600');
+            } else {
+                resultDiv.textContent = "😞 Sorry, you are not eligible for the loan.";
+                resultDiv.classList.add('text-red-600');
+                resultDiv.classList.remove('text-green-600');
+            }
+        });
+    </script>
+</body>
+</html>

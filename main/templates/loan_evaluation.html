@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Evaluation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-6">
+        <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-8">
+            <h1 class="text-2xl font-semibold text-gray-800 mb-6">Loan Evaluation for {{ user['age'] }} year old applicant</h1>
+
+            {% if is_eligible %}
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
+                    <p class="font-bold">Congratulations!</p>
+                    <p>You are eligible for a loan.</p>
+                </div>
+                <p class="text-lg mb-4">Your credit score is: <span class="font-semibold">{{ credit_score }}</span></p>
+                <p class="text-lg mb-4">Your debt-to-income ratio is: <span class="font-semibold">{{ debt_to_income_ratio }}%</span></p>
+                <p class="text-lg mb-4">The approved loan amount is: <span class="font-semibold text-green-600">{{ approved_loan }}</span></p>
+            {% else %}
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+                    <p class="font-bold">Sorry, you are not eligible for a loan at this time.</p>
+                </div>
+                <p class="text-lg mb-4">Your credit score is: <span class="font-semibold">{{ credit_score }}</span></p>
+                <p class="text-lg mb-4">Your debt-to-income ratio is: <span class="font-semibold">{{ debt_to_income_ratio }}%</span></p>
+                <p>Please review your financial information or reach out for assistance.</p>
+            {% endif %}
+
+            <div class="mt-6">
+                <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Reevaluate
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

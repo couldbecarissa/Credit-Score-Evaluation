@@ -1,183 +1,322 @@
-import pandas as pd
+import numpy as np
 
-# Function to load user data from CSV file
-def load_user_data_from_csv(file_path):
-    """
-    Load user data from a CSV file into a pandas DataFrame.
-    Each row in the CSV represents a user.
-    """
-    return pd.read_csv(file_path)
+# Constants
+MIN_LOAN_AMOUNT = 50000
+MAX_LOAN_AMOUNT = 500000
+MIN_CREDIT_SCORE = 0.3
 
-# Function to calculate credit scores for multiple users
-def calculate_credit_scores(df):
-    """
-    Calculate credit scores for users in the pandas DataFrame.
-    Returns a dictionary of user IDs and their respective credit scores.
-    """
-    scores = {}
-    
-    # Iterate over each row (user data)
-    for _, row in df.iterrows():
-        user_data = row.to_dict()  # Convert the row to a dictionary
-        user_id = user_data.get('ID')  # Get the user ID
-        score = calculate_credit_score(user_data)  # Calculate the score for this user
-        scores[user_id] = score  # Store the score with the user ID as the key
-    
-    return scores
+def normalize_business_duration(months_in_business):
+    if months_in_business < 12:  # Less than 1 year
+        return 0.2
+    elif months_in_business < 36:  # 1-3 years
+        return 0.4
+    elif months_in_business < 60:  # 3-5 years
+        return 0.6
+    elif months_in_business < 120:  # 5-10 years
+        return 0.8
+    else:  # More than 10 years
+        return 1.0
 
-# Function to calculate credit score for a single user
-def calculate_credit_score(user_data):
-    """
-    Calculate the credit score based on user data.
-    The score is based on the FICO model but customized for sokoni context.
-    """
-
-    # Initialize base score
-    score = 300
-
-    # Payment History (35% of FICO Score)
-    payment_history_score = calculate_payment_history(user_data)
-    score += payment_history_score * 0.35
-
-    # Amounts Owed (30% of FICO Score)
-    amounts_owed_score = calculate_amounts_owed(user_data)
-    score += amounts_owed_score * 0.30
-
-    # Length of Credit History (15% of FICO Score)
-    length_of_credit_score = calculate_length_of_credit(user_data)
-    score += length_of_credit_score * 0.15
-
-    # Credit Mix (10% of FICO Score)
-    credit_mix_score = calculate_credit_mix(user_data)
-    score += credit_mix_score * 0.10
-
-    # New Credit (10% of FICO Score)
-    new_credit_score = calculate_new_credit(user_data)
-    score += new_credit_score * 0.10
-
-    # Ensure the score is within the valid range
-    return min(max(int(score), 300), 850)
-
-# Supporting functions for different aspects of credit score calculation
-def calculate_payment_history(user_data):
+def normalize_payment_methods(methods):
     score = 0
-    if safe_int(user_data.get('E8')) == 1:
-        score += 50
-    if safe_int(user_data.get('E9')) == 1:
-        score += 100
+    if 'cash' in methods:
+        score += 0.3
+    if 'mobile_money' in methods:
+        score += 0.5
+    if 'bank' in methods:
+        score += 0.7
+    return min(score, 1.0)
 
-    missed_payments = safe_int(user_data.get('missed_payments', 0))
-    if missed_payments > 0:
-        score -= min(missed_payments * 10, 50)
+def normalize_age(age):
+    if age < 25:
+        return 0.3
+    elif age < 35:
+        return 0.6
+    elif age < 50:
+        return 1.0
+    else:
+        return 0.8
 
-    return score
+def normalize_revenue(monthly_revenue):
+    if monthly_revenue < 100000:  # Less than 100,000 TSh
+        return 0.2
+    elif monthly_revenue < 300000:  # 100,000 to 300,000 TSh
+        return 0.4
+    elif monthly_revenue < 500000:  # 300,000 to 500,000 TSh
+        return 0.6
+    elif monthly_revenue < 1000000:  # 500,000 to 1,000,000 TSh
+        return 0.8
+    else:  # Over 1,000,000 TSh
+        return 1.0
 
-def calculate_amounts_owed(user_data):
-    score = 0
-    monthly_revenue = safe_float(user_data.get('D8', '0'))
-    monthly_savings = safe_float(user_data.get('E3', '0'))
+def normalize_dependants(dependants):
+    if dependants <= 2:
+        return 1.0
+    elif dependants <= 4:
+        return 0.8
+    elif dependants <= 6:
+        return 0.6
+    elif dependants <= 8:
+        return 0.4
+    else:
+        return 0.2
 
-    if monthly_revenue > 0:
-        debt_to_income = 1 - (monthly_savings / monthly_revenue)
-        if debt_to_income <= 0.3:
-            score += 100
-        elif debt_to_income <= 0.5:
-            score += 75
-        elif debt_to_income <= 0.7:
-            score += 50
-        else:
-            score += 25
-    return score
-
-def calculate_length_of_credit(user_data):
-    score = 0
-    business_duration = user_data.get('C6', '')
-    if isinstance(business_duration, str):
-        if 'Less than 1 year' in business_duration:
-            score += 20
-        elif any(year in business_duration for year in ['1-2', '3-5']):
-            score += 60
-        else:
-            score += 100
-    return score
-
-def calculate_credit_mix(user_data):
-    score = 0
-    financial_services = sum([safe_int(user_data.get(f'E7_{i}', 0)) for i in range(1, 13)])
-
-    if financial_services >= 3:
-        score += 100
-    elif financial_services >= 2:
-        score += 75
-    elif financial_services >= 1:
-        score += 50
-
-    return score
-
-def calculate_new_credit(user_data):
-    score = 100
-    if safe_int(user_data.get('E18')) == 1:
-        score -= 50
-    return score
-
-# Utility functions for safely converting types
-def safe_int(value):
-    try:
-        return int(value)
-    except (ValueError, TypeError):
-        return 0
-
-def safe_float(value):
-    try:
-        return float(value)
-    except (ValueError, TypeError):
+def normalize_debt(debt):
+    if debt < 50000:
+        return 1.0
+    elif debt < 100000:
+        return 0.8
+    elif debt < 250000:
+        return 0.6
+    elif debt < 400000:
+        return 0.4
+    elif debt < 500000:
+        return 0.2
+    else:
         return 0.0
 
-# Function to explain the score rating
-def explain_score(score):
-    if score >= 800:
-        return "Exceptional"
-    elif score >= 740:
-        return "Very Good"
-    elif score >= 670:
-        return "Good"
-    elif score >= 580:
-        return "Fair"
-    else:
-        return "Poor"
+def calculate_debt_to_income_ratio(monthly_income, total_debt, estimated_loan_term=12):
+    if monthly_income == 0:
+        return float('inf'), False
+    
+    estimated_monthly_debt = total_debt / estimated_loan_term
+    ratio = estimated_monthly_debt / monthly_income
+    is_eligible = ratio <= 1.5
+    return min(ratio, 2), is_eligible
 
-# Function to calculate loan amount based on credit score
-def calculate_loan_amount(score):
-    """
-    Calculate the loan amount based on the credit score.
-    The score is scaled from 0 to 500,000 TSH.
-    """
-    min_score = 300
-    max_score = 850
-    min_loan = 0
-    max_loan = 500000
-
-    # Scale the score to the loan amount
-    if score < min_score:
-        return min_loan
-    elif score > max_score:
-        return max_loan
+def normalize_overdue_installments(num_overdue_installments):
+    if num_overdue_installments == 0:
+        return 1.0
+    elif num_overdue_installments == 1:
+        return 0.7
+    elif num_overdue_installments == 2:
+        return 0.4
+    elif num_overdue_installments == 3:
+        return 0.2
     else:
-        return min_loan + ((score - min_score) / (max_score - min_score)) * (max_loan - min_loan)
+        return 0.0
+
+def normalize_credit_inquiries(num_credit_inquiries):
+    if num_credit_inquiries == 0:
+        return 1.0
+    elif num_credit_inquiries == 1:
+        return 0.8
+    elif num_credit_inquiries == 2:
+        return 0.6
+    elif num_credit_inquiries == 3:
+        return 0.4
+    else:
+        return 0.2
+
+def normalize_rgp(region_gdp, national_average_gdp):
+    ratio = region_gdp / national_average_gdp
+    return min(max(ratio, 0), 1)
+
+def calculate_credit_score(user):
+    weights = {
+        'credit_utilization': 0.25,
+        'payment_history': 0.35,
+        'maturity_index': 0.10,
+        'loan_term': 0.10,
+        'credit_accounts': 0.20
+    }
+
+    credit_utilization = calculate_credit_utilization(user)
+    payment_history = calculate_payment_history(user)
+    maturity_index = calculate_maturity_index(user)
+    loan_term = calculate_loan_term(user)
+    credit_accounts = calculate_credit_accounts(user)
+
+    credit_score = (
+        weights['credit_utilization'] * credit_utilization +
+        weights['payment_history'] * payment_history +
+        weights['maturity_index'] * maturity_index +
+        weights['loan_term'] * loan_term +
+        weights['credit_accounts'] * credit_accounts
+    )
+
+    return credit_score
+
+def calculate_credit_utilization(user):
+    financial_literacy_weight = 0.10
+    debt_weight = 0.60
+    payment_method_weight = 0.15
+    housing_weight = 0.15
+
+    score = 0
+    score += financial_literacy_weight if user.get("financial_literacy") == "yes" else 0
+    score += debt_weight * normalize_debt(user.get("total_amount_in_debt", 0))
+    score += payment_method_weight * normalize_payment_methods(user.get("payment_methods", []))
+    score += housing_weight * (
+        0.75 * normalize_dependants(user.get("num_dependants", 0)) +
+        0.25 * (1 if user.get("housing_status") == "own" else 0.5 if user.get("housing_status") == "rent" else 0)
+    )
+
+    return score
+
+def calculate_payment_history(user):
+    weights = {
+        'debt_to_income': 0.30,
+        'overdue_installments': 0.25,
+        'credit_inquiries': 0.15,
+        'past_due_amount': 0.15,
+        'past_due_days': 0.10,
+        'regional_gdp': 0.05
+    }
+
+    monthly_income = user.get("monthly_income", 0)
+    total_debt = user.get("total_amount_in_debt", 0)
+    debt_to_income_ratio, is_eligible = calculate_debt_to_income_ratio(monthly_income, total_debt)
+
+    if not is_eligible:
+        return 0
+
+    score = 0
+    score += weights['debt_to_income'] * (1 - debt_to_income_ratio / 2)
+    score += weights['overdue_installments'] * normalize_overdue_installments(user.get("num_overdue_installments", 0))
+    score += weights['credit_inquiries'] * normalize_credit_inquiries(user.get("num_credit_inquiries", 0))
+    score += weights['past_due_amount'] * (1 if user.get("max_past_due_amount", 0) == 0 or 
+                                           user.get("max_past_due_amount", 0) < monthly_income else 0.4)
+    score += weights['past_due_days'] * calculate_past_due_days_score(user.get("max_past_due_days", 0))
+    score += weights['regional_gdp'] * normalize_rgp(user.get("region_gdp", 0), user.get("national_average_gdp", 1))
+
+    return score
+
+def calculate_maturity_index(user):
+    business_duration_weight = 0.60
+    age_weight = 0.40
+
+    score = 0
+    score += business_duration_weight * normalize_business_duration(user.get("months_in_business", 0))
+    score += age_weight * normalize_age(user.get("age", 0))
+
+    return score
+
+def calculate_loan_term(user):
+    loan_term = user.get("loan_term", 30)  # Assuming loan terms are in days
+    if loan_term <= 30:
+        return 1.0
+    elif loan_term <= 60:
+        return 0.8
+    elif loan_term <= 90:
+        return 0.6
+    else:
+        return 0.4
+
+def calculate_credit_accounts(user):
+    num_credit_accounts = user.get("num_credit_accounts", 0)
+    total_open_contracts = user.get("total_open_contracts", 0)
+
+    score = 0
+    for variable in [num_credit_accounts, total_open_contracts]:
+        if variable == 0:
+            score += 0.5  # Neutral score for no credit history
+        elif variable == 1:
+            score += 1.0
+        elif variable == 2:
+            score += 0.8
+        elif variable <= 4:
+            score += 0.6
+        else:
+            score += 0.4
+
+    return score / 2  # Normalize to 0-1 range
+
+def calculate_past_due_days_score(max_past_due_days):
+    if max_past_due_days == 0:
+        return 1.0
+    elif max_past_due_days <= 7:
+        return 0.8
+    elif max_past_due_days <= 14:
+        return 0.6
+    elif max_past_due_days <= 30:
+        return 0.4
+    elif max_past_due_days <= 60:
+        return 0.2
+    else:
+        return 0.0
+
+def approve_loan(credit_score, requested_amount):
+    if credit_score <= MIN_CREDIT_SCORE:
+        return 0  # No loan approved
+
+    # Calculate maximum loan amount based on credit score
+    max_approved_amount = MIN_LOAN_AMOUNT + (MAX_LOAN_AMOUNT - MIN_LOAN_AMOUNT) * credit_score
+
+    # Approve the lesser of the requested amount and the maximum approved amount
+    approved_amount = min(requested_amount, max_approved_amount)
+
+    # Ensure the approved amount is within the allowable range
+    return max(MIN_LOAN_AMOUNT, min(approved_amount, MAX_LOAN_AMOUNT))
+
+def calculate_risk_score(user):
+    weights = {
+        'lack_financial_documentation': 0.15,
+        'negative_credit_history': 0.25,
+        'high_debt_to_income_ratio': 0.20,
+        'business_instability': 0.15,
+        'lack_collateral': 0.10,
+        'high_risk_location': 0.05,
+        'inadequate_management_experience': 0.10
+    }
+
+    risk_score = 0
+    risk_score += weights['lack_financial_documentation'] * (1 if not user.get("financial_literacy") else 0)
+    risk_score += weights['negative_credit_history'] * (1 - calculate_credit_accounts(user))
+    risk_score += weights['high_debt_to_income_ratio'] * calculate_debt_to_income_ratio(user.get("monthly_income", 0), user.get("total_amount_in_debt", 0))[0] / 2
+    risk_score += weights['business_instability'] * (1 - normalize_business_duration(user.get("months_in_business", 0)))
+    risk_score += weights['lack_collateral'] * (1 if not user.get("collateral") else 0)
+    risk_score += weights['high_risk_location'] * (1 - normalize_rgp(user.get("region_gdp", 0), user.get("national_average_gdp", 1)))
+    risk_score += weights['inadequate_management_experience'] * (1 - calculate_maturity_index(user))
+
+    return min(max(risk_score, 0), 1)
+
+def is_dead_case(user):
+    risk_score = calculate_risk_score(user)
+    return risk_score >= 0.5
+
+def evaluate_loan_application(user):
+    if is_dead_case(user):
+        return {
+            "status": "Rejected",
+            "reason": "High risk applicant",
+            "approved_amount": 0
+        }
+
+    credit_score = calculate_credit_score(user)
+    requested_amount = user.get("requested_loan_amount", 0)
+    approved_amount = approve_loan(credit_score, requested_amount)
+
+    return {
+        "status": "Approved" if approved_amount > 0 else "Rejected",
+        "credit_score": credit_score,
+        "approved_amount": approved_amount,
+        "risk_score": calculate_risk_score(user)
+    }
 
 # Example usage
-file_path = 'data.csv'  # Replace with your actual CSV file path
+if __name__ == "__main__":
+    sample_user = {
+        "financial_literacy": "yes",
+        "total_amount_in_debt": 20,
+        "payment_methods": ["cash", "mobile_money"],
+        "num_dependants": 3,
+        "housing_status": "rent",
+        "age": 32,
+        "months_in_business": 36,
+        "monthly_income": 500000,
+        "num_overdue_installments": 1,
+        "num_credit_inquiries": 2,
+        "max_past_due_amount": 50000,
+        "max_past_due_days": 15,
+        "num_credit_accounts": 1,
+        "total_open_contracts": 1,
+        "region_gdp": 2000000,
+        "national_average_gdp": 2500000,
+        "loan_term": 60,
+        "requested_loan_amount": 300000,
+        "collateral": "business inventory"
+    }
 
-# Load user data from the CSV file
-df_users = load_user_data_from_csv(file_path)
-
-# Calculate credit scores for all users
-credit_scores = calculate_credit_scores(df_users)
-
-# Calculate and print loan amounts for all users
-for user_id, score in credit_scores.items():
-    loan_amount = calculate_loan_amount(score)
-    print(f"User ID: {user_id}, Credit Score: {score}")
-    print(f"Credit Rating: {explain_score(score)}")
-    print(f"Loan Amount: {loan_amount} TSH")
-    print()
+    result = evaluate_loan_application(sample_user)
+    print(result)

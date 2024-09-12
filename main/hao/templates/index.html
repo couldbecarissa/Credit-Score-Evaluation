@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❄️ Cool Credit Score Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-200 to-blue-500 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-8">❄️ Cool Credit Score Calculator ❄️</h1>
+
+        <!-- Default test cases buttons -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold text-gray-700 mb-2">Ready Test Cases:</h2>
+            <div class="flex space-x-4">
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="fillTestCase(1)">Test Case 1 (Excellent)</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="fillTestCase(2)">Test Case 2 (Good)</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="fillTestCase(3)">Test Case 3 (Average)</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="fillTestCase(4)">Test Case 4 (Poor)</button>
+            </div>
+        </div>
+
+        <!-- Form for user input -->
+        <form method="POST" class="bg-gray-100 p-6 rounded-lg shadow-inner">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Average Monthly Revenue</label>
+                    <input id="average_monthly_revenue" name="average_monthly_revenue" type="number" step="0.01" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Total Amount in Debt</label>
+                    <input id="total_amount_in_debt" name="total_amount_in_debt" type="number" step="0.01" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Max Past Due Amount</label>
+                    <input id="max_past_due_amount" name="max_past_due_amount" type="number" step="0.01" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Number of Overdue Installments</label>
+                    <input id="num_overdue_installments" name="num_overdue_installments" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Total Open Contracts</label>
+                    <input id="total_open_contracts" name="total_open_contracts" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Max Past Due Days</label>
+                    <input id="max_past_due_days" name="max_past_due_days" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Months in Business</label>
+                    <input id="months_in_business" name="months_in_business" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Payment Methods</label>
+                    <input id="payment_methods" name="payment_methods" type="text" placeholder="e.g. cash, mobile_money" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Age</label>
+                    <input id="age" name="age" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Number of Dependants</label>
+                    <input id="num_dependants" name="num_dependants" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Number of Credit Inquiries</label>
+                    <input id="num_credit_inquiries" name="num_credit_inquiries" type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Region GDP</label>
+                    <input id="region_gdp" name="region_gdp" type="number" step="0.01" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">National Average GDP</label>
+                    <input id="national_average_gdp" name="national_average_gdp" type="number" step="0.01" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Housing Status</label>
+                    <input id="housing_status" name="housing_status" type="text" placeholder="e.g. rent, own" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+            </div>
+
+            <button type="submit" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Calculate</button>
+        </form>
+
+        {% if credit_score is not none %}
+        <div class="mt-6 text-center">
+            <p class="text-2xl">Credit Score: <strong>{{ credit_score | round(2) }}</strong></p>
+            <p class="text-2xl">Approved Loan: <strong>{{ approved_loan | round(2) }}/= TSH</strong></p>
+
+            {% if credit_score > 0.1 %}
+            <p class="mt-4 text-xl font-bold text-green-500">🎉 Congratulations! You Passed! 🎉</p>
+            {% else %}
+            <p class="mt-4 text-xl font-bold text-red-500">🚫 Sorry! You Failed. 🚫</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Function to fill the form with test case data
+        function fillTestCase(caseNumber) {
+            const testCases = {
+                1: {
+                    "average_monthly_revenue": 1200000,
+                    "total_amount_in_debt": 100000,
+                    "max_past_due_amount": 0,
+                    "num_overdue_installments": 0,
+                    "total_open_contracts": 1,
+                    "max_past_due_days": 0,
+                    "months_in_business": 48,
+                    "payment_methods": "mobile_money,bank",
+                    "age": 40,
+                    "num_dependants": 2,
+                    "num_credit_inquiries": 1,
+                    "region_gdp": 1300000,
+                    "national_average_gdp": 1000000,
+                    "housing_status": "own"
+                },
+                2: {
+                    "average_monthly_revenue": 800000,
+                    "total_amount_in_debt": 200000,
+                    "max_past_due_amount": 20000,
+                    "num_overdue_installments": 1,
+                    "total_open_contracts": 2,
+                    "max_past_due_days": 7,
+                    "months_in_business": 36,
+                    "payment_methods": "mobile_money,bank",
+                    "age": 35,
+                    "num_dependants": 3,
+                    "num_credit_inquiries": 2,
+                    "region_gdp": 1100000,
+                    "national_average_gdp": 1000000,
+                    "housing_status": "rent"
+                },
+                3: {
+                    "average_monthly_revenue": 500000,
+                    "total_amount_in_debt": 300000,
+                    "max_past_due_amount": 50000,
+                    "num_overdue_installments": 2,
+                    "total_open_contracts": 3,
+                    "max_past_due_days": 21,
+                    "months_in_business": 24,
+                    "payment_methods": "cash,mobile_money",
+                    "age": 30,
+                    "num_dependants": 4,
+                    "num_credit_inquiries": 3,
+                    "region_gdp": 900000,
+                    "national_average_gdp": 1000000,
+                    "housing_status": "rent"
+                },
+                4: {
+                    "average_monthly_revenue": 400000,
+                    "total_amount_in_debt": 400000,
+                    "max_past_due_amount": 100000,
+                    "num_overdue_installments": 3,
+                    "total_open_contracts": 4,
+                    "max_past_due_days": 45,
+                    "months_in_business": 12,
+                    "payment_methods": "cash",
+                    "age": 25,
+                    "num_dependants": 6,
+                    "num_credit_inquiries": 4,
+                    "region_gdp": 700000,
+                    "national_average_gdp": 1000000,
+                    "housing_status": "other"
+                }
+            };
+
+            const caseData = testCases[caseNumber];
+            for (const key in caseData) {
+                if (caseData.hasOwnProperty(key)) {
+                    document.getElementById(key).value = caseData[key];
+                }
+            }
+        }
+    </script>
+</body>
+</html>
