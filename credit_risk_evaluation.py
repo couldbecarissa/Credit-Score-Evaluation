@@ -150,8 +150,7 @@ def calculate_credit_score(user):
                 (weight_MaturityIndex*maturity_index)+(weight_PaymentHistory*payment_history)
             return credit_score
 
-def approve_loan(credit_score,user):
-    monthly_revenue=user.get("monthly_demo_affordability",0)
+def approve_loan(credit_score):
     max_loan_amount=500000
     min_loan_amount=50000
     min_credit_score=0.3
@@ -160,10 +159,8 @@ def approve_loan(credit_score,user):
             scaled_score = credit_score**2
         else:
             scaled_score = 0.5 + 0.5 * ((credit_score - 0.5) / 0.5) 
-    loan = max_loan_amount * scaled_score
 
-    if loan>monthly_revenue:
-      loan=monthly_revenue * scaled_score
+        loan = min_loan_amount + (max_loan_amount - min_loan_amount) * scaled_score
     return loan
 
 def should_calculate(user):

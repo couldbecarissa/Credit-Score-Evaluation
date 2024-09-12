@@ -26,5 +26,5 @@ credit_score_user=credit_risk_evaluation.should_calculate(user=user1)
 
 print(f"User Credit Score: {np.round(credit_score_user,decimals=3):,} creds")
 
-loan_given=np.round(credit_risk_evaluation.approve_loan(credit_score=credit_score_user,user=user1),decimals=0)
+loan_given=np.round(credit_risk_evaluation.approve_loan(credit_score=credit_score_user),decimals=0)
 print(loan_given)
