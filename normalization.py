@@ -87,14 +87,22 @@ def normalize_affordability(monthly_demo_affordability,total_amount_in_debt):
     return ratio
 
 def normalize_rgp(B5):
-    rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
-    for region in rgp['Region']:
-        if(B5.lower()==region.lower()):
-             regions=pd.Series(rgp['Region'])
-             index=regions.index[regions == B5]
-             result=rgp.loc[index, 'Normalized GDP']
-        else:result=0
-    return result
+    # Read the CSV file
+    df = pd.read_csv('normalized-tanzania-gdp-csv.txt')
+    # Convert region names to lowercase and strip whitespace for case-insensitive matching
+    df['Region_Lower'] = df['Region'].str.lower().str.strip()
+    region_name_lower = B5.lower().strip()
+    
+    # Find the matching row
+    matching_row = df[df['Region_Lower'] == region_name_lower]
+    
+    if not matching_row.empty:
+        # If a match is found, return the Normalized_GDP value
+        gdp = matching_row['Normalized_GDP'].iloc[0]
+    else:
+        # If no match is found, return None
+        gdp=0
+    return gdp
  #POLITICAL INSTABILITY
 
 def is_EMPTY(field):

@@ -1,4 +1,4 @@
-Region,GDP per capita (TZS),Normalized GDP
+Region,GDP per capita (TZS),Normalized_GDP
 Dar,4348990,1.0000
 Mbeya ,3506101,0.7192
 Iringa ,3360551,0.6718
