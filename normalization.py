@@ -90,8 +90,9 @@ def normalize_rgp(B5):
     rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
     for region in rgp['Region']:
         if(B5.lower()==region.lower()):
-             index=rgp.index[[rgp['Region'].astype(str).lower() == B5.str.lower()]]
-             result=rgp.at[index, 'Normalized GDP']
+             regions=pd.Series(rgp['Region'])
+             index=regions.index[regions == B5]
+             result=rgp.loc[index, 'Normalized GDP']
         else:result=0
     return result
  #POLITICAL INSTABILITY

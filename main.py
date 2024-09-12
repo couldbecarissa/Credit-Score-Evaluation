@@ -18,7 +18,7 @@ user1={
         "max_past_due_days":1,
        "num_credit_accounts":7,
         "total_open_contracts":6, 
-        "B5":"Mbeya",#
+        "B5":"Dar",#
         "loan_term":15
     }
 
