@@ -160,10 +160,10 @@ def approve_loan(credit_score,user):
             scaled_score = credit_score**2
         else:
             scaled_score = 0.5 + 0.5 * ((credit_score - 0.5) / 0.5) 
-    loan = min_loan_amount + (max_loan_amount - min_loan_amount) * scaled_score
+    loan = max_loan_amount * scaled_score
 
     if loan>monthly_revenue:
-      loan=min_loan_amount + (monthly_revenue - min_loan_amount) * scaled_score
+      loan=monthly_revenue * scaled_score
     return loan
 
 def should_calculate(user):
