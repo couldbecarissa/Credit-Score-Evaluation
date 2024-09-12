@@ -10,7 +10,7 @@ user1={
         "B15":3,
         "C3":"own",
         "age":32,
-        "C6":7,#
+        "C6":4,#
         "monthly_demo_affordability":70000,
         "num_overdue_installments":5,#
         "num_credit_inquiries":6,

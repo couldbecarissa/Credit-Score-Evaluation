@@ -3,7 +3,7 @@ import pandas as pd
 
 def normalize_business_duration(C6):
     weights = [0.2, 0.4,0.6, 0.8, 1.0]
-    business_duration_ranges = [(0, 3), (3, 5), (5, 8), (8,11),(11, float('inf'))]
+    business_duration_ranges = [(0, 3), (3, 5), (5, 8), (8,11),(11, 1000)]
     for start, end in business_duration_ranges:
         if start <= C6 < end:
             weight= weights[business_duration_ranges.index((start, end))]     
@@ -89,8 +89,8 @@ def normalize_affordability(monthly_demo_affordability,total_amount_in_debt):
 def normalize_rgp(B5):
     rgp=pd.read_csv('normalized-tanzania-gdp-csv.txt')
     for region in rgp['Region']:
-        if(B5==region):
-             index=rgp[rgp['Region'].astype(str).lower() == B5.str.lower()].index[0]
+        if(B5.lower()==region.lower()):
+             index=rgp.index[[rgp['Region'].astype(str).lower() == B5.str.lower()]]
              result=rgp.at[index, 'Normalized GDP']
         else:result=0
     return result

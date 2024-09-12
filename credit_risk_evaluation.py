@@ -133,13 +133,15 @@ def calculate_credit_score(user):
                                           C3=user.get("C3", 0))
             maturity_index=MaturityIndex(age=user.get("age", 0),
                                          C6=user.get("C6", 0),)
-            payment_history=PaymentHistory(monthly_demo_affordability=user.get("monthly_demo_affordability", 0),
+            payment_history=PaymentHistory(
+                                            total_amount_in_debt=user.get("total_amount_in_debt", 0),
+                                            monthly_demo_affordability=user.get("monthly_demo_affordability", 0),
+                                            num_overdue_installments=user.get("num_overdue_installments", 0),
                                            num_credit_inquiries=user.get("num_credit_inquiries", 0),
-                                           num_overdue_installments=user.get("num_overdue_installments", 0),
                                            max_past_due_amount=user.get("max_past_due_amount", 0),
                                            max_past_due_days=user.get("max_past_due_days", 0),
-                                           B5=user.get("B5", 0),
-                                           total_amount_in_debt=user.get("total_amount_in_debt", 0),)
+                                           B5=user.get("B5", "Dar")
+                                           )
             credit_accounts=CreditAccounts(num_credit_accounts=user.get("num_credit_accounts", 0),
                                            total_open_contracts=user.get("total_open_contracts", 0))
             loan_terms=LoanTerm(loan_term=user.get("loan_term",7))

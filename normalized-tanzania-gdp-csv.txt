@@ -1,5 +1,5 @@
 Region,GDP per capita (TZS),Normalized GDP
-Dar es Salaam,4348990,1.0000
+Dar,4348990,1.0000
 Mbeya ,3506101,0.7192
 Iringa ,3360551,0.6718
 Njombe ,3317698,0.6566
