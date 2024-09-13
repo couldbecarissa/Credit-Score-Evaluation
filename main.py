@@ -19,7 +19,10 @@ user1={
        "num_credit_accounts":7,
         "total_open_contracts":6, 
         "B5":"Dar",
-        "loan_term":15
+        "loan_term":15,
+        "market":'Makumbusho',
+        "PPIscore":51.00
+
     }
 
 credit_score_user=credit_risk_evaluation.should_calculate(user=user1)

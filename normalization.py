@@ -88,7 +88,7 @@ def normalize_affordability(monthly_demo_affordability,total_amount_in_debt):
 
 def normalize_rgp(B5):
     # Read the CSV file
-    df = pd.read_csv('normalized-tanzania-gdp-csv.txt')
+    df = pd.read_csv('regionaldata.csv')
     # Convert region names to lowercase and strip whitespace for case-insensitive matching
     df['Region_Lower'] = df['Region'].str.lower().str.strip()
     region_name_lower = B5.lower().strip()
@@ -103,7 +103,30 @@ def normalize_rgp(B5):
         # If no match is found, return None
         gdp=0
     return gdp
- #POLITICAL INSTABILITY
+
+    
+
+def normalize_market(market):
+    df = pd.read_csv('regionaldata.csv')
+    def min_max_norm(data):
+        min=np.min(data)
+        max=np.max(data)
+        scaled_data=(data- min) / (max - min)
+        return scaled_data
+    
+    df['Norm_Mean']=min_max_norm(df['Mean'])    
+
+    df['Market_Lower']=df['Market'].str.lower().str.strip()
+    market=market.lower()
+    matching_row= df[df['Market_Lower'] == market]
+    if not matching_row.empty:
+            # If a match is found, return the Normalized_GDP value
+            market_mean = matching_row['Norm_Mean'].iloc[0]
+    else:
+            # If no match is found, return None
+            market_mean=0
+    return market_mean
+
 
 def is_EMPTY(field):
     if field is not None:
@@ -134,3 +157,12 @@ def normalize_credit_inquiries(num_credit_inquiries):
             weight= weights[credit_inquiry_ranges.index((start, end))]
             break
     return weight
+
+def normalize_PPI_score(PPIscore):
+    PPI_ranges=[(40,45),(45,50),(50,55),(55,60),(60,65),(65,70),(70,75),(75,80),(80,85),(85,90),(90,95),(95,100)]
+    weights=[(1/12),(1/6),0.25,(1/3),(5/12),0.5,(7/12),(2/3),0.75,(5/6),11/12,1]
+    for start,end in PPI_ranges:
+        if start<=PPIscore<end:
+            wt=weights[PPI_ranges.index((start,end))]
+        else:wt=0
+    return wt
