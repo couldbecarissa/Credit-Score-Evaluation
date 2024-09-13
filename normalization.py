@@ -104,8 +104,6 @@ def normalize_rgp(B5):
         gdp=0
     return gdp
 
-    
-
 def normalize_market(market):
     df = pd.read_csv('regionaldata.csv')
     def min_max_norm(data):
@@ -126,7 +124,6 @@ def normalize_market(market):
             # If no match is found, return None
             market_mean=0
     return market_mean
-
 
 def is_EMPTY(field):
     if field is not None:
